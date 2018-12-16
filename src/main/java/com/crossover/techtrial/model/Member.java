@@ -1,7 +1,9 @@
 /**
- * 
+ *
  */
 package com.crossover.techtrial.model;
+
+import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -13,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 /**
  * @author kshah
@@ -20,109 +24,111 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "member")
-public class Member implements Serializable{
-  
-  private static final long serialVersionUID = 9045098179799205444L;
-  
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Long id;
+public class Member implements Serializable {
 
-  @Column(name = "name")
-  String name;
+    private static final long serialVersionUID = 9045098179799205444L;
 
-  @Column(name = "email")
-  String email;
-  
-  @Enumerated(EnumType.STRING)
-  MembershipStatus membershipStatus;
-  
-  @Column(name = "membership_start_date")
-  LocalDateTime membershipStartDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-  public Long getId() {
-    return id;
-  }
+    @Column(name = "name")
+    @Length(min = 2, max = 100, message = "The name must be composed by 2 - 100 characters")
+    @Pattern(regexp = "^[a-zA-Z]+[A-Za-z ,.'-]+$", message = "The name format is not valid")
+    String name;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    @Column(name = "email", unique = true)
+    @NotEmpty
+    String email;
 
-  public String getName() {
-    return name;
-  }
+    @Column(name = "membership_status")
+    @Enumerated(EnumType.STRING)
+    MembershipStatus membershipStatus;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    @Column(name = "membership_start_date")
+    LocalDateTime membershipStartDate;
 
-  public String getEmail() {
-    return email;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public MembershipStatus getMembershipStatus() {
-    return membershipStatus;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setMembershipStatus(MembershipStatus membershipStatus) {
-    this.membershipStatus = membershipStatus;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public LocalDateTime getMembershipStartDate() {
-    return membershipStartDate;
-  }
+    public String getEmail() {
+        return email;
+    }
 
-  public void setMembershipStartDate(LocalDateTime membershipStartDate) {
-    this.membershipStartDate = membershipStartDate;
-  }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((email == null) ? 0 : email.hashCode());
-    result = prime * result + ((id == null) ? 0 : id.hashCode());
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
-    return result;
-  }
+    public MembershipStatus getMembershipStatus() {
+        return membershipStatus;
+    }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Member other = (Member) obj;
-    if (email == null) {
-      if (other.email != null)
-        return false;
-    } else if (!email.equals(other.email))
-      return false;
-    if (id == null) {
-      if (other.id != null)
-        return false;
-    } else if (!id.equals(other.id))
-      return false;
-    if (name == null) {
-      if (other.name != null)
-        return false;
-    } else if (!name.equals(other.name))
-      return false;
-    return true;
-  }
+    public void setMembershipStatus(MembershipStatus membershipStatus) {
+        this.membershipStatus = membershipStatus;
+    }
 
-  @Override
-  public String toString() {
-    return "Member [id=" + id + ", name=" + name + ", email=" + email + "]";
-  }
-  
-  
-  
+    public LocalDateTime getMembershipStartDate() {
+        return membershipStartDate;
+    }
+
+    public void setMembershipStartDate(LocalDateTime membershipStartDate) {
+        this.membershipStartDate = membershipStartDate;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Member other = (Member) obj;
+        if (email == null) {
+            if (other.email != null)
+                return false;
+        } else if (!email.equals(other.email))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Member [id=" + id + ", name=" + name + ", email=" + email + "]";
+    }
+
 
 }

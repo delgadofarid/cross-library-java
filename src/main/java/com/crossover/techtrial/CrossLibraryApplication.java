@@ -5,11 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author crossover
- *
  */
 @SpringBootApplication
 public class CrossLibraryApplication {
-  public static void main(String[] args) {
-    SpringApplication.run(CrossLibraryApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(CrossLibraryApplication.class, args);
+    }
 }
