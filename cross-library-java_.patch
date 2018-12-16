@@ -1,0 +1,3877 @@
+From 096f2af1bb562395267e8465079d313e251cbfe2 Mon Sep 17 00:00:00 2001
+From: Farid Delgado Molina <fdelgado@Farids-MacBook-Pro.local>
+Date: Sun, 16 Dec 2018 05:01:16 -0500
+Subject: [PATCH] My submission
+XOV: XO_0_0_1
+
+---
+ .idea/encodings.xml                           |   4 +
+ .idea/gradle.xml                              |  17 +
+ .idea/misc.xml                                |   7 +
+ .idea/vcs.xml                                 |   6 +
+ .idea/workspace.xml                           | 786 ++++++++++++++++++
+ G                                             |   0
+ build.gradle                                  |   4 +-
+ cross-library-java_.patch                     |   0
+ ...over.cross-library-java.main.kotlin_module | Bin 0 -> 16 bytes
+ .../techtrial/CrossLibraryApplication.class   | Bin 0 -> 741 bytes
+ .../techtrial/controller/BookController.class | Bin 0 -> 2995 bytes
+ .../controller/MemberController.class         | Bin 0 -> 4408 bytes
+ .../controller/TransactionController.class    | Bin 0 -> 4858 bytes
+ .../techtrial/dto/TopMemberDTO.class          | Bin 0 -> 1427 bytes
+ .../exceptions/GlobalExceptionHandler.class   | Bin 0 -> 2111 bytes
+ .../com/crossover/techtrial/model/Book.class  | Bin 0 -> 2201 bytes
+ .../crossover/techtrial/model/Member.class    | Bin 0 -> 3815 bytes
+ .../techtrial/model/MembershipStatus.class    | Bin 0 -> 1158 bytes
+ .../techtrial/model/Transaction.class         | Bin 0 -> 2727 bytes
+ .../repositories/BookRepository.class         | Bin 0 -> 475 bytes
+ .../repositories/MemberRepository.class       | Bin 0 -> 1184 bytes
+ .../repositories/TransactionRepository.class  | Bin 0 -> 791 bytes
+ .../techtrial/service/BookService.class       | Bin 0 -> 252 bytes
+ .../techtrial/service/BookServiceImpl.class   | Bin 0 -> 1868 bytes
+ .../techtrial/service/MemberService.class     | Bin 0 -> 259 bytes
+ .../techtrial/service/MemberServiceImpl.class | Bin 0 -> 1881 bytes
+ .../resources/application.properties          |  14 +
+ .../db/changelog/db.changelog-1.0.xml         |  43 +
+ .../db/changelog/db.changelog-2.0.xml         |   8 +
+ .../db/changelog/db.changelog-master.xml      |   6 +
+ out/production/resources/logback-spring.xml   |  11 +
+ .../CrossLibraryApplicationTest.class         | Bin 0 -> 354 bytes
+ .../controller/BookControllerTest.class       | Bin 0 -> 5188 bytes
+ .../controller/MemberControllerTest.class     | Bin 0 -> 7163 bytes
+ .../TransactionControllerTest.class           | Bin 0 -> 10348 bytes
+ .../techtrial/CrossLibraryApplication.java    |   7 +-
+ .../techtrial/controller/BookController.java  |  75 +-
+ .../controller/MemberController.java          | 132 +--
+ .../controller/TransactionController.java     |  97 ++-
+ .../crossover/techtrial/dto/TopMemberDTO.java | 124 +--
+ .../exceptions/GlobalExceptionHandler.java    |  25 +-
+ .../com/crossover/techtrial/model/Book.java   | 120 +--
+ .../com/crossover/techtrial/model/Member.java | 216 ++---
+ .../techtrial/model/MembershipStatus.java     |   8 +-
+ .../techtrial/model/Transaction.java          | 140 ++--
+ .../repositories/BookRepository.java          |   2 +-
+ .../repositories/MemberRepository.java        |  36 +-
+ .../repositories/TransactionRepository.java   |  11 +-
+ .../techtrial/service/BookService.java        |  13 +-
+ .../techtrial/service/BookServiceImpl.java    |  35 +-
+ .../techtrial/service/MemberService.java      |  13 +-
+ .../techtrial/service/MemberServiceImpl.java  |  32 +-
+ src/main/main.iml                             |  11 +
+ .../db/changelog/db.changelog-1.0.xml         |   2 +-
+ .../db/changelog/db.changelog-2.0.xml         |   8 +
+ .../db/changelog/db.changelog-master.xml      |   2 +-
+ .../controller/BookControllerTest.java        | 105 +++
+ .../controller/MemberControllerTest.java      | 200 ++++-
+ .../controller/TransactionControllerTest.java | 273 ++++++
+ src/test/test.iml                             |  12 +
+ 60 files changed, 2041 insertions(+), 564 deletions(-)
+ create mode 100644 .idea/encodings.xml
+ create mode 100644 .idea/gradle.xml
+ create mode 100644 .idea/misc.xml
+ create mode 100644 .idea/vcs.xml
+ create mode 100644 .idea/workspace.xml
+ create mode 100644 G
+ create mode 100644 cross-library-java_.patch
+ create mode 100644 out/production/classes/META-INF/com.crossover.cross-library-java.main.kotlin_module
+ create mode 100644 out/production/classes/com/crossover/techtrial/CrossLibraryApplication.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/controller/BookController.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/controller/MemberController.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/controller/TransactionController.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/dto/TopMemberDTO.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/exceptions/GlobalExceptionHandler.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/model/Book.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/model/Member.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/model/MembershipStatus.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/model/Transaction.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/repositories/BookRepository.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/repositories/MemberRepository.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/repositories/TransactionRepository.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/service/BookService.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/service/BookServiceImpl.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/service/MemberService.class
+ create mode 100644 out/production/classes/com/crossover/techtrial/service/MemberServiceImpl.class
+ create mode 100644 out/production/resources/application.properties
+ create mode 100644 out/production/resources/db/changelog/db.changelog-1.0.xml
+ create mode 100644 out/production/resources/db/changelog/db.changelog-2.0.xml
+ create mode 100644 out/production/resources/db/changelog/db.changelog-master.xml
+ create mode 100644 out/production/resources/logback-spring.xml
+ create mode 100644 out/test/classes/com/crossover/techtrial/CrossLibraryApplicationTest.class
+ create mode 100644 out/test/classes/com/crossover/techtrial/controller/BookControllerTest.class
+ create mode 100644 out/test/classes/com/crossover/techtrial/controller/MemberControllerTest.class
+ create mode 100644 out/test/classes/com/crossover/techtrial/controller/TransactionControllerTest.class
+ create mode 100644 src/main/main.iml
+ create mode 100644 src/main/resources/db/changelog/db.changelog-2.0.xml
+ create mode 100644 src/test/java/com/crossover/techtrial/controller/BookControllerTest.java
+ create mode 100644 src/test/java/com/crossover/techtrial/controller/TransactionControllerTest.java
+ create mode 100644 src/test/test.iml
+
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+new file mode 100644
+index 0000000..15a15b2
+--- /dev/null
++++ b/.idea/encodings.xml
+@@ -0,0 +1,4 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding" addBOMForNewFiles="with NO BOM" />
++</project>
+\ No newline at end of file
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+new file mode 100644
+index 0000000..310e0f2
+--- /dev/null
++++ b/.idea/gradle.xml
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="GradleSettings">
++    <option name="linkedExternalProjectsSettings">
++      <GradleProjectSettings>
++        <option name="distributionType" value="DEFAULT_WRAPPED" />
++        <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++          </set>
++        </option>
++        <option name="useQualifiedModuleNames" value="true" />
++      </GradleProjectSettings>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+index 0000000..bc8d0a3
+--- /dev/null
++++ b/.idea/misc.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+index 0000000..94a25f7
+--- /dev/null
++++ b/.idea/vcs.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+new file mode 100644
+index 0000000..323e776
+--- /dev/null
++++ b/.idea/workspace.xml
+@@ -0,0 +1,786 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ChangeListManager">
++    <list default="true" id="913100f3-0958-4867-84fb-ef41fd0a1fb0" name="Default Changelist" comment="">
++      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/CrossLibraryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/CrossLibraryApplication.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/BookController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/MemberController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/TransactionController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/dto/TopMemberDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/dto/TopMemberDTO.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/exceptions/GlobalExceptionHandler.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Book.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Member.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/MembershipStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/MembershipStatus.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Transaction.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/BookRepository.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/MemberRepository.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/TransactionRepository.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/BookService.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/BookServiceImpl.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/MemberService.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/MemberServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/MemberServiceImpl.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-1.0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-1.0.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/com/crossover/techtrial/controller/MemberControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/crossover/techtrial/controller/MemberControllerTest.java" afterDir="false" />
++    </list>
++    <ignored path="$PROJECT_DIR$/out/" />
++    <ignored path="$PROJECT_DIR$/.gradle/" />
++    <ignored path="$PROJECT_DIR$/build/" />
++    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="CoverageDataManager">
++    <SUITE FILE_PATH="coverage/cross_library_java$_default_.ic" NAME="&lt;default&gt; Coverage Results" MODIFIED="1544942375211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
++      <FILTER>com.crossover.techtrial.CrossLibraryApplicationTest</FILTER>
++      <FILTER>com.crossover.techtrial.controller.MemberControllerTest</FILTER>
++    </SUITE>
++    <SUITE FILE_PATH="coverage/cross_library_java$All_in_com_crossover_cross_library_java.ic" NAME="All in com.crossover.cross-library-java Coverage Results" MODIFIED="1544942186391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
++    <SUITE FILE_PATH="coverage/cross_library_java$TestingCrossLibraryApplication.ic" NAME="TestingCrossLibraryApplication Coverage Results" MODIFIED="1544953711444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
++      <FILTER>com.crossover.techtrial.*</FILTER>
++    </SUITE>
++  </component>
++  <component name="CoverageViewManager">
++    <option name="myElementSize" value="149" />
++  </component>
++  <component name="ExternalProjectsData">
++    <projectState path="$PROJECT_DIR$">
++      <ProjectState />
++    </projectState>
++  </component>
++  <component name="FileEditorManager">
++    <leaf>
++      <file pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/test/java/com/crossover/techtrial/controller/MemberControllerTest.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="122">
++              <caret line="134" column="4" lean-forward="true" selection-start-line="134" selection-start-column="4" selection-end-line="176" selection-end-column="5" />
++              <folding>
++                <element signature="n#!!doc" expanded="true" />
++                <element signature="imports" expanded="true" />
++              </folding>
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/test/java/com/crossover/techtrial/controller/BookControllerTest.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="345">
++              <caret line="89" column="70" selection-start-line="89" selection-start-column="70" selection-end-line="89" selection-end-column="70" />
++              <folding>
++                <element signature="imports" expanded="true" />
++              </folding>
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file pinned="false" current-in-tab="true">
++        <entry file="file://$PROJECT_DIR$/src/test/java/com/crossover/techtrial/controller/TransactionControllerTest.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="381">
++              <caret line="265" column="30" lean-forward="true" selection-start-line="265" selection-start-column="30" selection-end-line="265" selection-end-column="30" />
++              <folding>
++                <element signature="n#!!doc" expanded="true" />
++                <element signature="imports" expanded="true" />
++              </folding>
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/TransactionController.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="208">
++              <caret line="80" column="44" lean-forward="true" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
++              <folding>
++                <element signature="imports" expanded="true" />
++              </folding>
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/MemberController.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="173">
++              <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="46" />
++              <folding>
++                <element signature="imports" expanded="true" />
++              </folding>
++            </state>
++          </provider>
++        </entry>
++      </file>
++    </leaf>
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Interface" />
++        <option value="Class" />
++      </list>
++    </option>
++  </component>
++  <component name="FindInProjectRecents">
++    <findStrings>
++      <find>junit</find>
++      <find>memberController</find>
++      <find>mockMvc</find>
++      <find>findById</find>
++      <find>membe</find>
++      <find>lellisoninactive</find>
++    </findStrings>
++    <dirStrings>
++      <dir>$PROJECT_DIR$</dir>
++    </dirStrings>
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="IdeDocumentHistory">
++    <option name="CHANGED_PATHS">
++      <list>
++        <option value="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml" />
++        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
++        <option value="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-1.0.xml" />
++        <option value="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-2.0.xml" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/TransactionService.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/TransactionServiceImpl.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/exceptions/GlobalExceptionHandler.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/MembershipStatus.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Transaction.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/BookRepository.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/BookService.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/BookServiceImpl.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/MemberService.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/MemberServiceImpl.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/CrossLibraryApplication.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/dto/TopMemberDTO.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Book.java" />
++        <option value="$PROJECT_DIR$/build.gradle" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/MemberRepository.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/TransactionRepository.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Member.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/BookController.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/MemberController.java" />
++        <option value="$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/TransactionController.java" />
++        <option value="$PROJECT_DIR$/src/test/java/com/crossover/techtrial/controller/TransactionControllerTest.java" />
++        <option value="$PROJECT_DIR$/src/test/java/com/crossover/techtrial/controller/MemberControllerTest.java" />
++        <option value="$PROJECT_DIR$/src/test/java/com/crossover/techtrial/controller/BookControllerTest.java" />
++      </list>
++    </option>
++  </component>
++  <component name="ProjectFrameBounds">
++    <option name="y" value="23" />
++    <option name="width" value="1440" />
++    <option name="height" value="816" />
++  </component>
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
++  <component name="ProjectView">
++    <navigator proportions="" version="1">
++      <foldersAlwaysOnTop value="true" />
++    </navigator>
++    <panes>
++      <pane id="Scope" />
++      <pane id="PackagesPane" />
++      <pane id="ProjectPane" />
++    </panes>
++  </component>
++  <component name="PropertiesComponent">
++    <property name="Downloaded.Files.Path.Enabled" value="false" />
++    <property name="Repository.Attach.Annotations" value="false" />
++    <property name="Repository.Attach.JavaDocs" value="false" />
++    <property name="Repository.Attach.Sources" value="false" />
++    <property name="RequestMappingsPanelOrder0" value="0" />
++    <property name="RequestMappingsPanelOrder1" value="1" />
++    <property name="RequestMappingsPanelWidth0" value="75" />
++    <property name="RequestMappingsPanelWidth1" value="75" />
++    <property name="WebServerToolWindowFactoryState" value="false" />
++    <property name="aspect.path.notification.shown" value="true" />
++    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544954198603" />
++    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
++    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
++    <property name="project.structure.last.edited" value="Modules" />
++    <property name="project.structure.proportion" value="0.15" />
++    <property name="project.structure.side.proportion" value="0.28045976" />
++  </component>
++  <component name="RecentsManager">
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/src/main/resources/db/changelog" />
++    </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/src/test" />
++      <recent name="$PROJECT_DIR$/src/test/java" />
++    </key>
++  </component>
++  <component name="RunDashboard">
++    <option name="ruleStates">
++      <list>
++        <RuleState>
++          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
++        </RuleState>
++        <RuleState>
++          <option name="name" value="StatusDashboardGroupingRule" />
++        </RuleState>
++      </list>
++    </option>
++  </component>
++  <component name="RunManager" selected="JUnit.TestingCrossLibraryApplication">
++    <configuration name="TestingCrossLibraryApplication" type="JUnit" factoryName="JUnit">
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.crossover.techtrial.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
++      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
++      <option name="PACKAGE_NAME" value="" />
++      <option name="MAIN_CLASS_NAME" value="" />
++      <option name="METHOD_NAME" value="" />
++      <option name="TEST_OBJECT" value="package" />
++      <option name="PARAMETERS" value="" />
++      <option name="TEST_SEARCH_SCOPE">
++        <value defaultName="wholeProject" />
++      </option>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="CrossLibraryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
++      <module name="com.crossover.cross-library-java.main" />
++      <option name="SPRING_BOOT_MAIN_CLASS" value="com.crossover.techtrial.CrossLibraryApplication" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <list>
++      <item itemvalue="JUnit.TestingCrossLibraryApplication" />
++      <item itemvalue="Spring Boot.CrossLibraryApplication" />
++    </list>
++  </component>
++  <component name="SvnConfiguration">
++    <configuration />
++  </component>
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="913100f3-0958-4867-84fb-ef41fd0a1fb0" name="Default Changelist" comment="" />
++      <created>1544906698154</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1544906698154</updated>
++      <workItem from="1544906701320" duration="36812000" />
++    </task>
++    <servers />
++  </component>
++  <component name="TestHistory">
++    <history-entry file="TestingCrossLibraryApplication - 2018.12.16 at 04h 10m 17s.xml">
++      <configuration name="TestingCrossLibraryApplication" configurationId="JUnit" />
++    </history-entry>
++    <history-entry file="TestingCrossLibraryApplication - 2018.12.16 at 04h 18m 42s.xml">
++      <configuration name="TestingCrossLibraryApplication" configurationId="JUnit" />
++    </history-entry>
++    <history-entry file="TestingCrossLibraryApplication - 2018.12.16 at 04h 21m 07s.xml">
++      <configuration name="TestingCrossLibraryApplication" configurationId="JUnit" />
++    </history-entry>
++    <history-entry file="TestingCrossLibraryApplication - 2018.12.16 at 04h 23m 52s.xml">
++      <configuration name="TestingCrossLibraryApplication" configurationId="JUnit" />
++    </history-entry>
++    <history-entry file="TestingCrossLibraryApplication - 2018.12.16 at 04h 26m 55s.xml">
++      <configuration name="TestingCrossLibraryApplication" configurationId="JUnit" />
++    </history-entry>
++    <history-entry file="TestingCrossLibraryApplication - 2018.12.16 at 04h 37m 41s.xml">
++      <configuration name="TestingCrossLibraryApplication" configurationId="JUnit" />
++    </history-entry>
++    <history-entry file="TestingCrossLibraryApplication - 2018.12.16 at 04h 39m 21s.xml">
++      <configuration name="TestingCrossLibraryApplication" configurationId="JUnit" />
++    </history-entry>
++    <history-entry file="TestingCrossLibraryApplication - 2018.12.16 at 04h 44m 44s.xml">
++      <configuration name="TestingCrossLibraryApplication" configurationId="JUnit" />
++    </history-entry>
++    <history-entry file="TestingCrossLibraryApplication - 2018.12.16 at 04h 48m 12s.xml">
++      <configuration name="TestingCrossLibraryApplication" configurationId="JUnit" />
++    </history-entry>
++    <history-entry file="TestingCrossLibraryApplication - 2018.12.16 at 04h 49m 02s.xml">
++      <configuration name="TestingCrossLibraryApplication" configurationId="JUnit" />
++    </history-entry>
++  </component>
++  <component name="TimeTrackingManager">
++    <option name="totallyTimeSpent" value="36812000" />
++  </component>
++  <component name="TodoView">
++    <todo-panel id="selected-file">
++      <is-autoscroll-to-source value="true" />
++    </todo-panel>
++    <todo-panel id="all">
++      <are-packages-shown value="true" />
++      <is-autoscroll-to-source value="true" />
++    </todo-panel>
++  </component>
++  <component name="ToolWindowManager">
++    <frame x="0" y="23" width="1440" height="816" extended-state="0" />
++    <editor active="true" />
++    <layout>
++      <window_info id="Image Layers" order="0" />
++      <window_info id="Capture Tool" order="1" />
++      <window_info id="UI Designer" order="2" />
++      <window_info id="Favorites" order="3" side_tool="true" />
++      <window_info id="Web" order="4" side_tool="true" />
++      <window_info id="Designer" order="5" />
++      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.24964234" />
++      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
++      <window_info anchor="bottom" id="Spring" order="0" weight="0.32872927" />
++      <window_info anchor="bottom" id="Terminal" order="1" weight="0.32872927" />
++      <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" />
++      <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5007153" side_tool="true" weight="0.32872927" />
++      <window_info anchor="bottom" id="Messages" order="4" weight="0.32872927" />
++      <window_info anchor="bottom" id="Java Enterprise" order="5" weight="0.32872927" />
++      <window_info anchor="bottom" id="Database Changes" order="6" />
++      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32872927" />
++      <window_info anchor="bottom" id="Build" order="8" weight="0.32872927" />
++      <window_info anchor="bottom" id="Message" order="9" />
++      <window_info anchor="bottom" id="Find" order="10" />
++      <window_info anchor="bottom" id="Run" order="11" sideWeight="0.49928468" visible="true" weight="0.32872927" />
++      <window_info anchor="bottom" id="Debug" order="12" weight="0.39917126" />
++      <window_info anchor="bottom" id="Cvs" order="13" weight="0.25" />
++      <window_info anchor="bottom" id="Inspection" order="14" weight="0.4" />
++      <window_info anchor="bottom" id="TODO" order="15" weight="0.32872927" />
++      <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.28898427" />
++      <window_info anchor="right" id="Palette" order="1" />
++      <window_info anchor="right" id="Capture Analysis" order="2" />
++      <window_info anchor="right" id="Gradle" order="3" />
++      <window_info anchor="right" id="Database" order="4" />
++      <window_info anchor="right" id="Palette&#9;" order="5" />
++      <window_info anchor="right" id="Theme Preview" order="6" />
++      <window_info anchor="right" id="Bean Validation" order="7" />
++      <window_info anchor="right" id="Maven" order="8" />
++      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="9" type="SLIDING" weight="0.4" />
++      <window_info anchor="right" id="Ant Build" order="10" weight="0.25" />
++      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="11" weight="0.25" />
++    </layout>
++    <layout-to-restore>
++      <window_info id="Image Layers" order="0" />
++      <window_info id="Capture Tool" order="1" />
++      <window_info id="UI Designer" order="2" />
++      <window_info id="Favorites" order="3" side_tool="true" />
++      <window_info id="Web" order="4" side_tool="true" />
++      <window_info id="Designer" order="5" />
++      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.24964234" />
++      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
++      <window_info anchor="bottom" id="Spring" order="0" weight="0.32872927" />
++      <window_info anchor="bottom" id="Terminal" order="1" weight="0.32872927" />
++      <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" />
++      <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5007153" side_tool="true" weight="0.32872927" />
++      <window_info anchor="bottom" id="Messages" order="4" weight="0.32872927" />
++      <window_info anchor="bottom" id="Java Enterprise" order="5" weight="0.32872927" />
++      <window_info anchor="bottom" id="Database Changes" order="6" />
++      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32872927" />
++      <window_info anchor="bottom" id="Build" order="8" weight="0.32872927" />
++      <window_info anchor="bottom" id="Message" order="9" />
++      <window_info anchor="bottom" id="Find" order="10" />
++      <window_info anchor="bottom" id="Run" order="11" sideWeight="0.49928468" weight="0.32872927" />
++      <window_info anchor="bottom" id="Debug" order="12" weight="0.39917126" />
++      <window_info anchor="bottom" id="Cvs" order="13" weight="0.25" />
++      <window_info anchor="bottom" id="Inspection" order="14" weight="0.4" />
++      <window_info anchor="bottom" id="TODO" order="15" weight="0.32872927" />
++      <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.28898427" />
++      <window_info anchor="right" id="Palette" order="1" />
++      <window_info anchor="right" id="Capture Analysis" order="2" />
++      <window_info anchor="right" id="Gradle" order="3" />
++      <window_info anchor="right" id="Database" order="4" />
++      <window_info anchor="right" id="Palette&#9;" order="5" />
++      <window_info anchor="right" id="Theme Preview" order="6" />
++      <window_info anchor="right" id="Bean Validation" order="7" />
++      <window_info anchor="right" id="Maven" order="8" />
++      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="9" type="SLIDING" weight="0.4" />
++      <window_info anchor="right" id="Ant Build" order="10" weight="0.25" />
++      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="11" weight="0.25" />
++    </layout-to-restore>
++  </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="1" />
++  </component>
++  <component name="editorHistoryManager">
++    <entry file="file://$PROJECT_DIR$/src/main/resources/logback-spring.xml">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/main.iml">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/test/test.iml">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="165">
++          <caret line="11" column="9" lean-forward="true" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/2.0.7.RELEASE/ee2183d70b86afa1ab3efe7a7c18a9104fe9a886/spring-data-commons-2.0.7.RELEASE-sources.jar!/org/springframework/data/repository/PagingAndSortingRepository.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="225">
++          <caret line="31" column="67" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/2.0.7.RELEASE/ee2183d70b86afa1ab3efe7a7c18a9104fe9a886/spring-data-commons-2.0.7.RELEASE-sources.jar!/org/springframework/data/repository/CrudRepository.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="180">
++          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/1.0.0.Final/33fbaa7276b774ef0925f541640f6ff23fbc62dc/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/javax/persistence/EnumType.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="150">
++          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-1.0.xml">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="600">
++          <caret line="40" column="42" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/TransactionService.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="90">
++          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/TransactionServiceImpl.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="150">
++          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="75">
++          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-2.0.xml">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="120">
++          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="105">
++          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/CrossLibraryApplication.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="165">
++          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/MemberServiceImpl.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="236">
++          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/MemberService.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="225">
++          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/BookServiceImpl.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="315">
++          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/service/BookService.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="225">
++          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Transaction.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="373">
++          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/exceptions/GlobalExceptionHandler.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="195">
++          <caret line="21" column="21" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="21" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Book.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="61">
++          <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
++          <folding>
++            <element signature="n#!!doc" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/gradlew">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="15">
++          <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/Readme.md">
++      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
++        <state split_layout="SPLIT">
++          <first_editor relative-caret-position="-329" />
++          <second_editor />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/build.gradle">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="15">
++          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/BookRepository.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="60">
++          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/TransactionRepository.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="210">
++          <caret line="21" column="66" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/repositories/MemberRepository.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="26">
++          <caret line="11" column="46" lean-forward="true" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/dto/TopMemberDTO.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="431">
++          <caret line="33" column="41" lean-forward="true" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
++          <folding>
++            <element signature="n#!!doc" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/test/java/com/crossover/techtrial/CrossLibraryApplicationTest.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="120">
++          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/BookController.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="167">
++          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
++          <folding>
++            <element signature="n#!!doc" expanded="true" />
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/MembershipStatus.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="105">
++          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/model/Member.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="-113">
++          <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
++          <folding>
++            <element signature="n#!!doc" expanded="true" />
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/MemberController.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="173">
++          <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="46" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test/2.0.2.RELEASE/52069c628c3bcb16473d528fbf24f76e9c0b902e/spring-boot-test-2.0.2.RELEASE-sources.jar!/org/springframework/boot/test/web/client/TestRestTemplate.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="458">
++          <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/test/java/com/crossover/techtrial/controller/MemberControllerTest.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="122">
++          <caret line="134" column="4" lean-forward="true" selection-start-line="134" selection-start-column="4" selection-end-line="176" selection-end-column="5" />
++          <folding>
++            <element signature="n#!!doc" expanded="true" />
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/com/crossover/techtrial/controller/TransactionController.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="208">
++          <caret line="80" column="44" lean-forward="true" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/test/java/com/crossover/techtrial/controller/BookControllerTest.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="345">
++          <caret line="89" column="70" selection-start-line="89" selection-start-column="70" selection-end-line="89" selection-end-column="70" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/test/java/com/crossover/techtrial/controller/TransactionControllerTest.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="381">
++          <caret line="265" column="30" lean-forward="true" selection-start-line="265" selection-start-column="30" selection-end-line="265" selection-end-column="30" />
++          <folding>
++            <element signature="n#!!doc" expanded="true" />
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++  </component>
++  <component name="masterDetails">
++    <states>
++      <state key="ArtifactsStructureConfigurable.UI">
++        <settings>
++          <artifact-editor />
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.28045976" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="FacetStructureConfigurable.UI">
++        <settings>
++          <last-edited>Spring</last-edited>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.28045976" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="GlobalLibrariesConfigurable.UI">
++        <settings>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="JdkListConfigurable.UI">
++        <settings>
++          <last-edited>1.8</last-edited>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="ModuleStructureConfigurable.UI">
++        <settings>
++          <last-edited>test|com.crossover.cross-library-java</last-edited>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.28045976" />
++                <option value="0.6" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="ProjectJDKs.UI">
++        <settings>
++          <last-edited>1.8</last-edited>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="ProjectLibrariesConfigurable.UI">
++        <settings>
++          <last-edited>Gradle: junit:junit:4.12</last-edited>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.28045976" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++    </states>
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/G b/G
+new file mode 100644
+index 0000000..e69de29
+diff --git a/build.gradle b/build.gradle
+index 2d73af5..8e1691a 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -23,7 +23,7 @@ apply plugin: 'io.spring.dependency-management'
+ apply plugin: 'com.github.ksoichiro.console.reporter'
+ 
+ group = 'com.crossover'
+-version = '0.0.1-SNAPSHOT'
++version = '1.0'
+ sourceCompatibility = 1.8
+ repositories {
+     mavenCentral()
+@@ -42,6 +42,6 @@ dependencies {
+ 	testCompile('org.springframework.boot:spring-boot-starter-aop')
+ 	testCompile('org.springframework.boot:spring-boot-starter-test')
+ 	testCompile('org.mockito:mockito-core:2.7.22')
++	testCompile('junit:junit:4.12')
+ 	
+ }
+-
+diff --git a/cross-library-java_.patch b/cross-library-java_.patch
+new file mode 100644
+index 0000000..e69de29
+diff --git a/out/production/classes/META-INF/com.crossover.cross-library-java.main.kotlin_module b/out/production/classes/META-INF/com.crossover.cross-library-java.main.kotlin_module
+new file mode 100644
+index 0000000000000000000000000000000000000000..8fb60192d378759239a3ecbf60eac8c8de446e9c
+GIT binary patch
+literal 16
+RcmZQzU|?ooU|@t|UH|}6022TJ
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/CrossLibraryApplication.class b/out/production/classes/com/crossover/techtrial/CrossLibraryApplication.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..30cd254ae39e864ea7cb6d404334f8bc7158f0f4
+GIT binary patch
+literal 741
+zcmb7CO;6iE5Pcg04sIwAO86)jZXpL&m8xD+A<;;jERYCF51iKSVixS(XuXE=vpBWt
+zfgiw+Ld-gml0$N+4>Ov1^YPxSU*G<{0Qic75OsVCupOd}odCNGE8mq??u22fb2MbA
+z_suWKupTKb&&xcP_DaMVWm=I*L^c#w`FN77yIWN-e2Eg1^Te8>Fb~plCzD%8g&FVr
+zT%=+v?9=IJl&M5GWps}g<w9wOcIP^}6AyxCLZ^H{T{`VmM1)Og^wu1hAsm>}Ch|;q
+zW(NzF9Q(NpdzYnlDwji5C}Mu9wQ&^*ntl=)oAP4hx87Kh%SU7Hd2Ed1qI4!P`bMRt
+zm3&Z@{2*XfMH9<dVc`F%KEPfR`}oYTF_nH1-^s)=bQdxjbC}srZ)QunVceNHVLuZ^
+z(VKI%qq$m1qLaTJ?@y%q$DLV0X%F{sh#LJm{;Pp`*<=HXIC(~Xx%&s~xq=&HJq(0c
+zCEFYqQ1pSKRf^Xr<D0)#!+=Js*8Pj6pVR)35Z@V4?Q}*1AF)pP8a67si57XkYYTV>
+D>Iue4
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/controller/BookController.class b/out/production/classes/com/crossover/techtrial/controller/BookController.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..72463177432a012845ea81a77b5385f9409244f3
+GIT binary patch
+literal 2995
+zcmb_e?NS?67=BI&gd_{KfY{ceRj>_Ey0%bSfuew=MZ<@HsMN2M%^_@AcH`~_WE?NS
+z3-B&<#?j&rFTiVZ9G|lZ`Ct+!I8J8I$vJ!8ujhT==j@+<|NaMnDeR}vgZGj!u#m<g
+zmQr{hkM(jnjVE}jhm{mQz=wLs>bI+DtYJNYjRZat=*@ZF!KNyDfgO7OiNO7=<sF)q
+z?*)N(q<k|})_&;Q(lPzBQ??4s#RjoifvcM(H?$Acjvd%JM=iLn7s}A~+(6)A*7FNy
+zQ1orLu;<G|b?o^EW==^rF!!XT4V$tmU@nwG@7VTLo@&$Dzb)k-*_INRXz5%~J`(v=
+zIZo-WIoq|vd4Z11=#D^q$;(sArL66$wbEfu`P-7d3iM??OFBD}adKVRjEDO+ou6!J
+z)AHQV_Z){PX*iauOIq$Os8DZG!FXo0Y5e<PSTr|PP$Wj`F~JK@D45)`3$6@HKHaj~
+zmz>K!mq*epg|=g6?I4_M>GdHoa3Y6i=lK(uYU<sw%9%Oa&DSU9i3(R`vB)e^EMAo1
+zKK(Ui(KdCK7<3?yl#W_pJ=2Z@7Xc<-wlUI<UV+m8Yrjo6b^A0c^=4phctIVSLyhgT
+zeNt>}p({~-zcr7fW9Os3GI#V}CgROT(G96PEL46&3%2jqruwF&0v2yxmt(q8$BQQ`
+zd4btXxy&5t7R;>2I=Dy%yL1M%nwQRN5iq=>CJX75%V(gjoYyOF=*?hbpAw`>ug)|%
+z-*(P=wnAwgu(Bg%32X|;{~l=DX8Wt1V}7TRnXvQU3rx3PK<vLW%F_MlGVKD1iYj)a
+z&rE6>?chxz1X5dG$+y(9tr@Rh<6L8`JDNRO5p}cbC2xf_@mT`{c-cT7`V-hPu#Jxs
+z*fH=4J~hybO9^~tU>DB}e2y;&uz@e}m4UAz4dkE_*fUVTb%DFBE}xcM%W8_4FDl9P
+z+;e4x<ntOCo>dQdxRvfEcL%Qy7XE_cP!~zKrcQG!!M@e3%bO6oKuojYqxy0xJ9(kb
+znQZ0yzud{J2u;TVH=7zi4;q8&-Xq_a8$HunCc0wIP^DDT4mNxhD3`eNn%(6{=mZAN
+zaI4FVHp1_MWv}Ft26~?=nOA<WSh5|?B!LyzRsNDAgFx}(oN5318);NUJJW4u=$xcL
+zXHL6=H~0<J!^Vm6#|j4PjH@orm!n;l`nkP0*X#n0gFIn!7MwfBeuMZq5_yHARsam)
+z3P+=S09SF1D}h&W9UYPI1FrPBp0QsLJ4J`U3&eloMhrD2V|7Y;DoTc;Gp|Ly_EN>`
+zd~Q602pA7<3Jjw&GO!rM1@zKD=lChQV$Cevi!2QCEKgP}=zk-4i`vSzZdPsGs<V}$
+zL=r*+G0JC*Pnx|DEylSJxQz+KBVT^tzNV<*iZ6*6R&W1`?jMonl+=;GK<ZR0&=ABU
+z2>Lh!Ge~2WtTRUhA4SgID66VEJB&L~D$;!WHty2YJ<4h1%R7_Ync_}2#9z3U!2L>C
+u)77wQ5I%_FxU5t2kYeuyv_HE`;~g}vb2DG9k$1Vy^GWgS8b7+NuH-+U=u@)*
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/controller/MemberController.class b/out/production/classes/com/crossover/techtrial/controller/MemberController.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..3c0b03f3faa3de8e1a85b55850f4d58a5d79eb1f
+GIT binary patch
+literal 4408
+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
+AcmMzZ
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/controller/TransactionController.class b/out/production/classes/com/crossover/techtrial/controller/TransactionController.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..8a8ab59e1a357967927dc5cfb35ba40b11ec4468
+GIT binary patch
+literal 4858
+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
+PokWuVNm{{A6UqMrtB9^Z
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/dto/TopMemberDTO.class b/out/production/classes/com/crossover/techtrial/dto/TopMemberDTO.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..dbc809da6c6614e2b3674bf6c79b58b6d3f8d31d
+GIT binary patch
+literal 1427
+zcma))+fEZv6o&sjogOHolv9;@KtP}jhe?#EQG*F6MpEGd!u_;NV6g3&cHr6<GSS4w
+z#0ww5hcf<a&p?MVB;KsO_u4D}`qtsk-(SB0tYfW+JQjzLLsiU@7+cJ89xHjQDim5?
+ztL}9^94VA)r|!AyG~M>GQw!S1uN2I-+wv5~5<mN4$Jc*ZujTqpg`s*7eA)`m+M$Bl
+zQOLda+kUvAkf|;mQerDOqQpqeZ+p9ElIy^&H??TcaGQs2$Cr2PG{Y0Wt6<j}LCa}$
+zf^IiB_c~7KHBOk<Z8}F`;2Z>>KWgf?2YZBkQBB}!@WeaDz3$l&xZz_jjHILiW7VZZ
+zT-<`;ZZc&2S}u{vQ)X9pYT}B-Wv}uSi2^2*0`b2{6e#g7YG{GM@ztVtv)^8Jlnu7{
+zpKzL0T}p93IO{aLZC`pjnrzXUjMc&jN*0P3wqS`VV93HP+*YXmZ?Cx`{SDcxpL&fD
+zGhC)Tcg=($lDrv`M4!x~PiEm+1h)Vs+EKoq@>D#t_D`tqI&4e_8MG6WD`T8DD+;1#
+zk}nY`(~7_sWSAPLh=9G)gJG}skg=D0FzvG0L$<G4(UG%Mog?C7;>=Th0aIAiS=Nyi
+zr8tY+q!huc=wgJaB5h+%xk*7L|L@>#Oyls3%J~8F8-ol;IXUgLQ%jkmP*lnWqa{U7
+z!}qa^+Pg+LM=O-0s7uUTjHz%B_hYRjh%pHABo*WV9;Sg9gCNfc^85x68M$;|Iu#@{
+z2=X!&<WV|EW)Nh9Aa8B}ks%4l3}$IZ*;R*KyBJOO>%eF>Q$gmqBNwB|=$Ys2=_?x*
+Tjb@u5?{5H+9TAXuopIqGgjCd&
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/exceptions/GlobalExceptionHandler.class b/out/production/classes/com/crossover/techtrial/exceptions/GlobalExceptionHandler.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..1759b4add3628bcf7e393b6d7fccaf908166158d
+GIT binary patch
+literal 2111
+zcmbtW>vGdZ6#mwZBVR-UE+I{6i_?VWMx(Z*rNn{a80SJAQsR&qW|(1Qd6AXMT6eWh
+znwh>qU#6u$fOe)2z(aL<BssPK7u@ng((ds&-}%mE&-%sRfBXet1^2QT!%_x1uB7o<
+z4$Ck!e38bNX<W@Bg_R7x!q-_`!#6ox$Et>67Hhbn;U+_}y1U7cuL@}!zWaFP(5MRA
+z=Ca5zy5@L}3UuZd4j4wtqQM!)tB%L-c3O2V_szOX5;C?-_rR1+u<r^-RMYVpid9Rr
+z3`+{%7e`zgid#)Zimt(bvUpoL!t;$ySJX|naw^y|y@nexXogFMTl3XJ^T;$@)3c49
+zVsRm&-Ik7LKbB^T9}D?|(NwB!>~X(M*u3H?N1aeKnVv(2iGgSgY1y@6$km)y+YQX+
+z34^}vd0duV)Au<=H51u)l;awuy04^ZsU5RD8?zyg7hcZGN&7T6+iy2ti!rQG!aTe9
+zy5wdMR?V?JQ*|U2;+J>KQrGF5!WxoSz-(%-L%DD91IKr$FG`*#lo=MBVRc~Pj(Odv
+zJ6^*ud%FE%_q!s!X1U$Y%+^FlT71I^`tai5K3Wbs=fAit3o5#BsRc`oBgf(t%i=)3
+zzT%P#MTIrWqDAe-Jyq0k4tX8pILolqYt_}leJ?m21tkh?DJ<^$h2Vq~B>%C)eYITB
+z@U4zpC}~({m=3%BO@(04S_ER+6!@jLU<Z`S8gA>TU_-;EjxF5L@STn-b{MYz?<1<=
+zu8v)N&v3SXJa_Ad+)^ZZb)+z)xRgRtI^&J{dVB9Tr8o|<RSf3N#K2rI%*8<>r|~n=
+zl>`VgA(KH<Vv9yajk>Z!hdQ@jy8URca_@enw$E^RV8z4H(l?^cnEO}kmnRU7Q@`g(
+zG)~q#j@#gri-+?=c^Z1u&93*+iQm;B`Nhp>*4GJy;l_Xz4^4!ePrlj$8#E|IFi<l#
+zSJ6d7sg8RIXYA=<kKad_rVDP2E<A=0g40E-B(3SN(fd8x8T4iJO)WkJ`;8U}oTv9_
+zC>+NGt@TI&7cfaXhW9Z=Ac67E7@-v~`vi%6a_KonlK2y;2l>&w_7v%zC&)ZQ_R4eQ
+z68M$$k|Fk3XfuTzQJTbup^rj@)Ad1!^xH-9HHkB%afw(J$Ua~aNv28i2}u%|A>D}Y
+zW%{P^X)m<tkT;OY>(6lJcO-)FSS-AA<a90snGZp-1h+u@MS4D_Cr|qnKF3GM&_94{
+I*dERN1Gn&FDgXcg
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/model/Book.class b/out/production/classes/com/crossover/techtrial/model/Book.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..b9f94b257ba987454dfe50b7c86a600d8bd15aea
+GIT binary patch
+literal 2201
+zcmah~-%}e^6#h1wWJ3sqra%Qzu%d<pno_k``Bex%8XBNNiqcx!CD|bho86e*bVUCX
+z-_;i$bf$)m&Nx2V8UG9a3LkW=-`!mr!le3;d(S!doO`}=&UZJz|MSx?0N%sHC=yud
+zfPz)A+=?QHwJ2_jC4szxbz#{MmJJ1)QADv4!5y)GB$llRwj(GA@ved$1s_Z3v9+46
+z8arCe)-CgHZb^c)CZQ{9nYN>v&W>u-wb03e{q&E&zB-f;&`S);AE=MjjG>zQnY?B0
+zPfHlss+*2p(ROrO-!rrY)3hAb;gz<8e%JkrOjRVY9nCCinOuoMm)jhyYNl3G9j)YM
+zrc=arguZ|DpZ?5LII3#GKex2JQOFf`C4?N^F*FH@GkCY1n(iVVY?C}|8TE?EOM<3a
+zVPJShH+5%Df}9-Np*3rjXpQG}Q`@Ll_Ox0-Ww9cGRb&%YwvxJU3_4|<)sN<jRwYxc
+zS+;FG)@m6?E0&2tH8K_6W@HvE>yQ~k`<jzuZxhL}Gid$phHUTfV)Fc%fE8hA!K<{l
+zCHh6J5ytx-eP^%m9o$RGs$KT#W3f2`s@6D9(t&cgrrCAFAuqNawRpI$R^1xOIG$;r
+z*Hwdsw%okAcc2xW>9Kq4owaw+Is^ZZIV`8F)mVXJc~B%ox2<}usIBOtuN|T}R|MH4
+zw42v5Ip-X)djoBT=|U8<+~XxNyoI-87{Fi*Z{V_mPhxyg?<?4i;U4ajTmL_$7^X2J
+z;Zl?Q9_YooZj?kBF5Hp(dTBO>Pw_x3pRu^{5toOv>?LhCG07Lyyu)jTgkIOATbXV5
+zMe1LA)aq_}3No~Wp7u--AZw^Lhj6il0IrcO2&>hqW|CbK?WTW*Q!NECu*Ls$rZ4qp
+zXBB>lhypSO(ThIH{rq+XaEU9MPyJO&7ibyc{u=eyH4I~f3diCfcXEG|zfqgU2nEiL
+z>pOJHaF@7;QYVmppb$WkYuGjRVT^Ljb3h7dY7)jV!L>E`2?F1r3m$D7e8tTug6Ehj
+zz&)Hw|A;^{b=0*c5n{YZ-|u<(=>;^eZV6X0*#?Mw9>{oGAlLA&AKU^&J`dz7flR&x
+zh}U6B5Z}M+DZ$DFJ=HTj6P)cC9xA8UnrBet?+_JY1Hnh9cDZSn8wfp`9Xe*H><*xx
+zX~An{T&Fa}$$miXh6`lGOW}7!X8P;&;OoaVdQB0+4aQC&_?(oH6?`ah#?o_k&Q}7G
+zbmyGTa6U%Aia-4-)KvOggo4NEX9&s1sRqJn{=N}P`d29HUTv{)*7Y0u=s`g!4Me_n
+zBc6aYigWq&Toy_L9qxIsS??NoE;tdwJUM?8omfB@7V!$QWcd;)y-d!ou&Pxu=oV)A
+z&peMcT5e+<d2DihfDJsPBv|A1NPWQ?l@W6+Z<u$^lgM6=x}hkc*x%@7lj89>&-pd+
+zo3KS6@iLM>Bf5Kn&P1$%E^mb0iMS`TlCDG#mj*7Jr(NL;?UFu@0IL#DY|(wSaY|Y0
+KOU%Qkx%@9%n7r5k
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/model/Member.class b/out/production/classes/com/crossover/techtrial/model/Member.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d9ea91d27e525d1f2704d0c69140010c5c02e991
+GIT binary patch
+literal 3815
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/model/MembershipStatus.class b/out/production/classes/com/crossover/techtrial/model/MembershipStatus.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..03dc4aa13b1e4245b0e206917533fd8d189f2a9c
+GIT binary patch
+literal 1158
+zcmbVL?{Csz5Pn`Lv~*=-l}*9<YfcAj(&6wEWZA|rS;X<7lZ5!G)CyfnYiQx`QkFQQ
+z(d@H-l=0qzj;UYpZE}};@436@?!A8h@%bBoGRg@E*p!h&UPM|%LB=AsxY(AkB$IQS
+zBc4cD=DH|B<ysT5!w^5HogTO93_A_e>uct~^L=k*4Ya^Ad%?gq9IfxYu^jEC)$dpX
+zzh}SG10xvv6$a_}<X5zK*l5;X)Q=d%jn+ZqRb6K&y`Dd1d}KI7%V*fl<^LmGs1a9&
+zrH1WVCqqv7)aW>LBZhgKZyAnqjWc6pXpZ4_HJv(iyOsR>MAe388cxfg2~mM*6~Q(7
+zR80N50u8!qyLPb0u=)=I$N3h65cF*7JfYiNmnJ-*Owk;7NLACB1|QC(uDip2bzbIs
+z^lq~54F{(6+~$*6`SW3md^`$n@Ks7HDB&qXalYM9kio8kySS%d2`L53T&PGfEM5(t
+z^Jj>ej^`4ObS^*BTeEX!nE`QqHao4FWB7h$2KM{?u4k?6muSHk>F*HsGn@fHnn;A2
+zcmSy^?~o&qzzSBuaFeWc()`F{u#bpbBKn>zhFc`#p-(1!2H7dTjL76x6$+mayM(~;
+zk!$$dbfZjT*KjBF(`X3AE0z$Y4-gAmYZr)r2;H;guEIs!=hX2a#H>TY!;mmfV^Jgg
+z9DIS$R>kNAq;n)fLl#0~AvBa&Xe8rb2^SsHwzY*Z7W8&(jHG@J#tBUNRl}4END})j
+R$xX<_c~X1>j|dmR<Dao-3bz0N
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/model/Transaction.class b/out/production/classes/com/crossover/techtrial/model/Transaction.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..2ab93ad017a1779202d34f5bd19b20435d115252
+GIT binary patch
+literal 2727
+zcma)7Yf~Fl7=BL34Oj?;N^e+Wt!=n<)mGa|X(^XtXbKh5wAfZ$k^^i_cA4D`BaWZ^
+z>~C>&rqUUm@dx;$9G|l%fg~=aAM&1e-|KVU%gI0g{`oh68`$Z=5LUY}h&4ruiab%I
+zq{!10p7kJw)il=C`Hdpa(|D1_%QU`CV<V04l*~$DGlg;r6@dX?dbU+9Nzb=k=ShBE
+zKr9LL&AE;rSWZx~s&$$8>2~(#Uw>Jh5s2B!sqo6$v&^dHY?}qw*`5+Ow_0}syCzGv
+zZ*NxReaCSFD_}@pU^q1Y!Q53z{6IQoY33_*x)h;Ul#cYQKvu%cG)nt{`rh7ut35Ln
+z_jjeT&(AL`7xTq+f%vBDelKvjP<Cr(*>ip0-IJaf$ns90Zf(}wimaNmw4&ok1ez5`
+z7F`mmFGi@BT-%v*tM!^ggScbWq(Dj~-B4vZ?a3|asq0p>(Q;^ztjXG@^aQS)fa_6c
+z$H?8<BMjPGVKG*=^1feZvU4FQQ&pawC|lKeYK#1$*ZBy*hhY0um<@Mp!`6We9d=a)
+zb<Yv#Z>qh9AbH1j?BK3IS8lY#yUww40-1vC$mP1aPSIl91qMSDC5z?dcS9Htc5KeU
+z_zCwddY0o`Wi>T~pV*c`o>d&ojp|Fbj$6Xl%As7RPN7TDRW+3*rt>>BKgEFB<!bI-
+zJXD%)rqMkT$eozzsGCgHbQ?V>S;I@E>t{OE-oxf!XjUe&{rybSW<JuWRfM$)pE(TQ
+z9D>YYgr+1NxNF=TXPd*_OdhsHOWC!aHMj1S<pWy{!$3<%uc;>^dMFq8as>Ny*3;bn
+zP=q5yT`ymO=5!eN4A%{u#{~nI@R5O0j2W1~q=8Q`DRAcKdD6gU>vpxGR<0FM_PJe|
+zHXyO32(Ofy$g16)W@jg|wQ%{!_fKT?ZiFjGL8d9tRiQ+@H1H4wfzh|mT1z<y<p|`;
+z<||naSkq8syXIQ>DBC~kol07}yVBt*OtwyYqvWm2(RNwZtj%60nL6GcAM#IR2!w$o
+zYx^FC$)DjLPYh>CS#5rgkUK@m`#dl5`vZwA9ijTrP@ksyG9@4LyyD|3az34*niOp@
+z-n3u`8y3AhuklBJldkOQ{}rFYppcV5dV@wLPr)-W_6Fj2GBJEknhb?!@dbJ1Km**w
+zEuI3m@g-@y^J~O@qq5ccdZhCd?lhe5(mF<;<k<Khh#jTw38gog@KzXMSX(vHD`>i?
+z0@Jt~0i>%F$W$bddzgs=($xv%9)Zjp14Oq^;67#}fW$k2%tZp3!+aEwcqfoW0{Q9~
+zAbLs!7VsbfNTL(S!$=^D46pmz)|x~okQD-Xd<+mhi~{*cAjwW3Ymq>fqJbnkfjlLU
+zXU721!!Ohe)40?g=SU55;V-1t-yl8MeSn@Z4(<VZ2Mx`4DZWqhamDv*KB4%G=97va
+kAb)^Uo%easa-TwDVq<s|ZpL!>3}lF6h2M{fg?sw-e?0I^wEzGB
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/repositories/BookRepository.class b/out/production/classes/com/crossover/techtrial/repositories/BookRepository.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..f3324dc85bf2f5009219aea5c415c3691e0c282e
+GIT binary patch
+literal 475
+zcmb7=%}N6?6oqf9cKYKVxbh{upzfv!D!3XDrr^R|nz@c?XL8F;rYiVkE_?tVN=#=l
+z6+ywp$tC3HeCK?8zP$s$IUFRgo4{TI`wE6rTRI&YAqB75T(2}%+Ld@ao0AD?#!{kR
+zigo3K=$f8b7Fg(@QE18D29_7RmZr$N?Ibf?qY?I=S0ot7JO;74!kP=J@QQhnesjv$
+zmFY#QU^L}M4Bgl&vK+0iZ9Y9&lPNgP8y9R%ch=ikMVHQT(803v3MPNC`hbRoP<Jmd
+zCm*6(&*(m&=Os&^Vk>q83eJ8@(FM2U+b|nS1&2QyRB-zL3i~Po^rBjpxNb+J9_&EB
+Qoe2!$9LMuv)aV|@UraohGXMYp
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/repositories/MemberRepository.class b/out/production/classes/com/crossover/techtrial/repositories/MemberRepository.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..cf873cb8c4ac772f67d8c98efc1dcb7eb8499eef
+GIT binary patch
+literal 1184
+zcmcgr&2AGh5Vrf5w)~Ys58Qlgq-rfHdP>!*O}2oPX3J(v1vhthvN-J8k?l>%g$LnL
+zIPd^G6k>LhZi66*6DwKvtj9CoeDlrsA78%_LSB%a2H9?qCk^tHlI?+1Nu);y=a656
+z=}PM;QM=ut7z^%X4!o;lk#&TF2(8xQ3vE(vM@Fi2U_=f#+I-}RaDpc~7gF&Hk%G9+
+zpw*nlD4fiAnXg63Mqj2%xWWJ>U;b<I!)~l|9vf|~9)sZy;t$S9k@3W7j>JrP=|n;6
+z2!TEe3sti6R$7U*oG7K8a8fHv2{N^ag5gMT10!vv(`Lfo6ksM8ZFMZN0w_J|`(3{s
+zvGP-J!w`~JL-J}!9zycwA?-RZuiECxWRKN`Li*=SK>D*i)($Rv(fo^MlbwaZd6hLX
+zLRk@)l`zMyUiqP4{dXR=5Q4#LYYSkfestygJ$C$@o%A~Fc)!|8$6LP;u!-sqjxWRD
+z@`9bdn??Os*enP;et7%t_Yzpg@3$%WJe5=?RLX<vA;hk=xEXVeXqzGl>%J`3Lar0Y
+z_*4qB5vX!?wMr{pZ1#0wVmOl-DtKq=co*0!r-_oozhSbD$JziFwWN3m*5RrmqgvMC
+z(?}Z!$udqcq2yqZa_a&m*cs?MER<|jvpvTZCHo7NTgRI4U&&gd2w@3ViH5FFvO-qT
+lUPEh%G{`#c_waTD*QUke^6ct9c~H4LtX&?V%hr4H_$TvNe9iy>
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/repositories/TransactionRepository.class b/out/production/classes/com/crossover/techtrial/repositories/TransactionRepository.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..3b671304f3dbd1a6bf2246a4a09aaf16011a27d7
+GIT binary patch
+literal 791
+zcmb7COG^VW5T00V>$|=V3W5g_y%-Qrwg^@clxm?B58l$<>6$j1DM_~K*?;B1AK;G?
+zv#qwpqUd1=Uzp*0%)Gt7yaK=>tmR-i2P-*PWv~^YD?gQq+85!84$p+cYO{teG5W$@
+zCrUBc*{!rhS8yeC#4Dtu;$HtFaZ>SW$4Syc6&Xy|Wu%24MF#ah4V5YZ#XK-%Ep^dw
+zhrzuwQYao%h>G7Bp{)o~hT^ej*zBntQ+iFVFLgVhM0-D17&p+2^?f;785eiS;CaMm
+zwb8=B6)R*SZaYTmsA)uu4`kXr6i#r19kSAqdE%!g32OuRA4?;Iy<Ag^Gj&Q#fag;A
+z6gNf!7*gz~>tL{6^Im0)x6;an!V|5@i8Lz9p!Az^>v%v0xfo3F8d~S8N9{%A@v%e3
+zVVLm;0}PISTGJo~iFR~bL$M4B!|UnC%HZJtxn`NyG2ttfl$m5O2~!?rJ(_@=$N6t~
+b8fMbY&yHD`>vhh<f`4cI<f5;_9V~qScG3G1
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/service/BookService.class b/out/production/classes/com/crossover/techtrial/service/BookService.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d6d3790fb385c185b19a1ac38f877f0056fc1066
+GIT binary patch
+literal 252
+zcmZ{fO$x#=5QX3P(^}n#r%(j5aUm#zE?gB{^aL>uH5wa8(;m)+2k=m0tnS3!d&8S=
+z-aMYSJAgR`F_IX4LX@-L7(*D1C+S(%QdC|Wk?PVf2}!2&Li)-vVeu1KrOIA~a<(jO
+z%}#h$C-1a0;%bj<#Mau&avd=J%vMhEPMg3PzQ-B6S}UHtFA}EzIOQkSkiIJc(9|@t
+e$i@C}X5}LSp%wlDs6%L@6MQ$g7NVfyM)h7UHby@H
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/service/BookServiceImpl.class b/out/production/classes/com/crossover/techtrial/service/BookServiceImpl.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..cee8a256cc857ccdd17a16c96a581391e7e72f95
+GIT binary patch
+literal 1868
+zcmbVNZF3V<6n<_}vTeGywS_A3UO<u-xFUkp)M|*lR2NXf#KCVjo7?o#&E9zTZkhfo
+zopEHq8GnG|Z*n|$Hzg@09puCAeLLql=Q;N|yMO=t@-G0N;m0z{Sn_bbi~^RXFog@#
+zxQLJ4_N93;xiXEb;2u8laLvP~3^Q%5w;##APL$PVm*GYb>K+e`P7=K%4YxAfvPOxB
+zn>{Nf6Mk!-TaDrPqcpavCtE5}?MT++SX*J0juVE}K$|X4`bNdwO(S~pnKs+JEk&I0
+zO%b}lT)cAN_0;NT%E%7Emey3P>^eiSQf)CzG;~KY%myl!57J&+n#Y2oG0X=#6j4i1
+zrnDYxPS`C);jfLQlt{CqLYc8?=JSnSKXP%q($=GhfGgGDsn`)bwJPF)N-UjDx~jQ3
+z!`#8s#r?VL_V@C+`I_z8*u;87Gs@Dcty8?Irs~GRriPfV9!Th|VaiRNno!<Ru3|^s
+z6^@X;>R2*V-gsAul}2hyRQSN9=3@@;Gb{{?Q#VHJx~ll_@t%k4K1uS1kDK_M>O|pe
+zVvXqEmv&2clGzeg=kUes6uz7Tp{?O759>a@#y1RnoCwF<7~yAmL?Z6;hwY~_q^nu^
+zA0Q0Z$5|hudj@Y)#hpwji+lHy<*-2ob4qk#At^N?k&qG>_Ss~cwKD3s#c-^Wi(`aA
+zt=gJK1K%=Ss=SR-T!WNE7|K48=L5W<Y)5sxnZ}`OPTrsfO?%Q%p7X;B?q%=zX>(hI
+zTMTDM0T23DTOMxvxP$LJeD5Q`eTJnWqKbF)w&a26wL5|oAO?NUFx?xjJUk={0SPnh
+zGx!^EEKOD=NyYnTv_b>CTub*v+=*mzA$P2e6tYR5uDCn8v(ND{3Hsd*^N@%84ho*#
+z=pbxEL{U>&CySY3<K$nGqUdzS=-_7$KQLT8P|i2eXE=Sh9nR5zp$w`#J#ei`;|$G8
+zG|tjkppkl;-tL#dX>@i+mY;+DmK`t9+ZhALaFpJDZa}L=S}}Zp4++FM|AHdTfb)N%
+z@Z>p)!Se5zc!49-oKOBh>8F?QfESo7VC7dbE5bp~&<LEwBu-JTr?U`?Im{r$Bu?Ns
+zKB7=3$kK(+cTUpm6zvqqYXWDo+1Xdz&e3{<9>@JI9^f8fRA}w|s}yq?E4ch038xX;
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/service/MemberService.class b/out/production/classes/com/crossover/techtrial/service/MemberService.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..eff2b84841ccd99d3c1dcdba3a874b536e1645d1
+GIT binary patch
+literal 259
+zcmZ{fI}XAy5JYGBg+PNi1r*?h3J?+vRS-o^;Ftv*IkDt8IUEHC;7|zj=@8wFcJ}S;
+z{c*hkSYQ|-jxZoZCtV)5#t_DnX_CuEirQ-<5?%QfAx`zVl)iRMSpEdoiL!-I&Q_Ie
+z*a^?-;+>X86!yqQ?77I;tu_HPNNw#D@3aY|@n?{-Yqa9|>ndUPk5zqQU)pzxFnX6Y
+gvOJ4Jmb3Cb0-+V&1E@o2qZ52LxE6XrMQ_!A0<Jqr4gdfE
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/classes/com/crossover/techtrial/service/MemberServiceImpl.class b/out/production/classes/com/crossover/techtrial/service/MemberServiceImpl.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6bb5589b33f7d0fe29b0fa179251b0dd80555a0
+GIT binary patch
+literal 1881
+zcmbVNZFAE`5Pr@MR^q5hnv}GZmqLKnP6}5FloY3-#^oig0v*h_L%*Hni*rQMxu<iO
+z{Hu1RQwBQIAJFM<>U7UiutRXB@IkuUyWM?upWT)I{`ciy0IuQ3GRj!;aK4NJmZmU;
+z3)8rWPu=ln^Q3ZV8kfO6eBt4Whc6lCVi~ukc_e!}RaTolh8sbsV;&lvrg~QzZe_S_
+zjS>+z`&vq-eDgKK8pDZ4{luzRwp6Oxk*p_)w!$i%qztQpHeH_fj7qv&M#S=&Haom6
+zMUwI@5jtotUK#Lu-|A<|$PT$Jt*J!Wb%tW4+G3b!=#FHV4OAi@^j-9i1)(v_2Ral{
+zOHiyN=Z6z^TM_)#u}P)U?5a@a`7|?WBko0n>}{!}Q;#C@U8x37#jfCet0Eq#)Y5f1
+zBhN|1<l+0pg8}XJ_Jdk|O?Pc<bTQ=`<+0V)33IBcx{0uTLkZtJ6x3TdDmQiCgz~O(
+z)GcP!9LfH&%a)<?#<HbW8mTQM#B-CHk2$>0urMU4Zj9J--1zYEo`<VGKEyR2*YOpx
+zbz5tjS|fU!(r)WcI$OexIjqi3;p;iv^iji_hi`nW;}*k}aUD6fc!V&BBoaxNKWsmh
+zA(iOTTe)GlK2HD0K_E8w>oP#!AhKLTQt>9c(l#QIQbR5r&>0-o%J>#_hU1m2Jw{@$
+zRa?`zjRr%t^8b3pO-f0Gq3luOJoh+k-qCK}>L;O_Qr@6R?Z?tkr1L}e_TzWspv@f-
+zZZn)6b$Hmm+Vb$7k2~1#@V$>85HKtaJ*s3^??@hqxZM#{f02Ix7^dT)<lzCO5NN&A
+z?=korNg~aFCrR}EGs;o!FYBcHBI!gjy^tB!MyPDkS1jp{o*XcIOzr$`ml@>IwmIR0
+zn&z+#5k*a9U1Q7)$0qxl6h)^qrW1bl@Q~r+Av)ibKEs)#^>B`U5@itc^uP@&tuwSM
+z(K<_OfmWJqdb|Gzr`72lTYe7q+u(YE-cA`fjt}VVX9^@OlEi4{KO!g2_!ksu2b}*C
+zg(uHZ43>Y##0wl_Sb6dXN<Y1X2fV;!0V}_fS`p6m46VRPOyU&9dU^n{n7PRzCh7JB
+zJ|?J>r0L+ZlT)-iO(zAM!2~`T?9RT*?HtMX>2bN=#U}2Nj|$1ozDk(OSi$H20qyG;
+ABLDyZ
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/production/resources/application.properties b/out/production/resources/application.properties
+new file mode 100644
+index 0000000..bddee0f
+--- /dev/null
++++ b/out/production/resources/application.properties
+@@ -0,0 +1,14 @@
++#Database connection Parameters
++spring.datasource.url: jdbc:mysql://localhost:3306/crosslibrary?createDatabaseIfNotExist=true&useSSL=false
++spring.datasource.username=root
++spring.datasource.password=
++spring.datasource.driver-class-name=com.mysql.jdbc.Driver
++
++spring.jpa.hibernate.ddl-auto=none
++
++spring.liquibase.change-log=classpath:/db/changelog/db.changelog-master.xml
++spring.data.rest.base-path=/api
++
++logging.level.root=INFO
++logging.level.org.hibernate.SQL=INFO
++logging.level.org.springframework=INFO
+diff --git a/out/production/resources/db/changelog/db.changelog-1.0.xml b/out/production/resources/db/changelog/db.changelog-1.0.xml
+new file mode 100644
+index 0000000..48e606d
+--- /dev/null
++++ b/out/production/resources/db/changelog/db.changelog-1.0.xml
+@@ -0,0 +1,43 @@
++<?xml version="1.1" encoding="UTF-8" standalone="no"?>
++<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
++    <changeSet author="crossover" id="1001122001_create_tables">
++        <createTable tableName="member">
++            <column autoIncrement="true" name="id" type="BIGINT">
++                <constraints primaryKey="true" primaryKeyName="pk_me"/>
++            </column>
++            <column name="name" type="VARCHAR(255)"/>
++            <column name="email" type="VARCHAR(255)"/>
++            <column name="membership_status" type="VARCHAR(255)"/>
++            <column name="membership_start_date" type="Datetime"/>
++        </createTable>
++        <createTable tableName="book">
++            <column autoIncrement="true" name="id" type="BIGINT">
++                <constraints primaryKey="true" primaryKeyName="pk_book"/>
++            </column>
++            <column name="title" type="VARCHAR(255)"/>
++        </createTable>
++        <createTable tableName="transaction">
++            <column autoIncrement="true" name="id" type="BIGINT">
++                <constraints primaryKey="true" primaryKeyName="transaction"/>
++            </column>
++            <column name="book_id" type="BIGINT"/>
++            <column name="member_id" type="BIGINT"/>
++            <column name="date_of_issue" type="DATETIME"/>
++            <column name="date_of_return" type="DATETIME"/>
++        </createTable>
++        <addForeignKeyConstraint baseColumnNames="book_id"
++            baseTableName="transaction"
++            constraintName="fk_transaction_book"
++            onDelete="CASCADE"
++            onUpdate="RESTRICT"
++            referencedColumnNames="id"
++            referencedTableName="book"/>
++        <addForeignKeyConstraint baseColumnNames="member_id"
++            baseTableName="transaction"
++            constraintName="fk_transaction_member"
++            onDelete="CASCADE"
++            onUpdate="RESTRICT"
++            referencedColumnNames="id"
++            referencedTableName="member"/>
++    </changeSet>
++</databaseChangeLog>
+diff --git a/out/production/resources/db/changelog/db.changelog-2.0.xml b/out/production/resources/db/changelog/db.changelog-2.0.xml
+new file mode 100644
+index 0000000..de6bf61
+--- /dev/null
++++ b/out/production/resources/db/changelog/db.changelog-2.0.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.1" encoding="UTF-8" standalone="no"?>
++<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
++    <changeSet author="fdelgado" id="1001122002_alter_tables">
++        <addUniqueConstraint columnNames="email"
++                             constraintName="uq_email"
++                             tableName="member"/>
++    </changeSet>
++</databaseChangeLog>
+diff --git a/out/production/resources/db/changelog/db.changelog-master.xml b/out/production/resources/db/changelog/db.changelog-master.xml
+new file mode 100644
+index 0000000..6a5bd6e
+--- /dev/null
++++ b/out/production/resources/db/changelog/db.changelog-master.xml
+@@ -0,0 +1,6 @@
++<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
++  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
++                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
++  <include file="db/changelog/db.changelog-2.0.xml"/>
++</databaseChangeLog>
+\ No newline at end of file
+diff --git a/out/production/resources/logback-spring.xml b/out/production/resources/logback-spring.xml
+new file mode 100644
+index 0000000..fb397ea
+--- /dev/null
++++ b/out/production/resources/logback-spring.xml
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<configuration>
++    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
++    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}"/>
++    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
++    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
++    <root level="INFO">
++        <appender-ref ref="FILE" />
++        <appender-ref ref="CONSOLE"/>
++    </root>
++</configuration>
+\ No newline at end of file
+diff --git a/out/test/classes/com/crossover/techtrial/CrossLibraryApplicationTest.class b/out/test/classes/com/crossover/techtrial/CrossLibraryApplicationTest.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..66daaa1cb338f3a2982e8697e50e7c34f3dfa8e7
+GIT binary patch
+literal 354
+zcmbV|ze)o^5XQf`+#hpZOz;U}7cJaEtrS55R)-b|>G#&fY}nj}y-gsGWhGen06vsB
+z8>}syfsgrq%paJq?~hLa*BF)PVNl?tz>tvNnbw4RLT_@uAf!|Gq6x#=wEAhgZnU4v
+z#xgmrosxDTy@~!8reSG1!cDE*S}5<j&h4}pL91opMk}U~)u!>%?;kcBYm^MewR7Et
+zTS7T=Td(w^i3i4i^j@yyPF6^f5w8Ami!h2Cgq7{9cy3l&1)L$_Kg1wTUd@`b69*4u
+d7w@1q1_=t*oH0=1h_yP@8T#zw_%UmO>Ic4{S@-||
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/test/classes/com/crossover/techtrial/controller/BookControllerTest.class b/out/test/classes/com/crossover/techtrial/controller/BookControllerTest.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..cb0e9a40fd6774b06e2a79a30afa0e74152c0008
+GIT binary patch
+literal 5188
+zcmbVQ`G3>q9e$KJ$Z<rVE`)}yT^c9}0jjQqwh+p2LMX|cqp=$bv}20%#t|rzE6IVZ
+z>#?J|@B8eIZtL!~UF*=YvTi@^vp=fa^GfnXY%dER{7QQDJ)iIKewBZ}|IRG{!}w<c
+zZCFx~@5DhYCt%`A0#{+l$CWtj1h0;KD8%uM3O4}{ejLRFR&gzXE?iGw4WH<sF!}Fa
+za{t)`K8fe#{_~Ra1xfZ|7e0kgtN2U;y;zFlv-0|qTs|k4&r7*qQ1L~1{gPz;vWl-H
+zun$X}_$t08@4l|$8wm{Hn<~DgKwWWiSEp8U3hqxkZeI5au4(6&Tw_ICbKI-CFFaqr
+zCKhy0xT}`%^{J44L_zn0<6IqcY~OV(OSlS-rgP4Uo^u_~b5?~*-rTb9nuew4DpdMt
+z9TUa$&J}InToLo8XD(PGW!sK#_@-lf3X*|M(nQmD0@Y-Q`(mYF8NN_3($Hqw<yQ^Q
+zS*EakJxfRC_{&Dj6!b`AZeiG-zGUQl$6eEniaC0!=sVX;S1gu&pA!Ygqhaovf@4j6
+zcgs|!@B;6vY!tNZq-mS}DFy9=2j>;U#+*g^wIglXV!F7pAl$4$Py!@!hBa>xPCiGQ
+zF@M=4N)I>H-4u6;2DNv1!Y>vSB*w4jL?HlO#kb42Un$ZweN-$tt|0L}G8bg{=0x7~
+zd^ZSErkKkK&s!>5G+rizg8Lf6y6pP}{T!EZM%!Pbytpg80>e!24mM|D%mShcTTj}l
+zMPjW`M&o#MAyvI6(^rgDL$?e&ug@%85jlV46m6Ml&RcK5$);GZFmhH9;6UQeKw=1C
+zg!Z1i2=E(Sn^>&kW-)t|6$Se@BUynIlCmrr2d`d8cNxzRDh0EfcIwh*bW5DJXMBVG
+z!YBk8$WEf-JKUvBRfrWFAKZv?ix5{?sewtfNJNqwC9qj73u95ZO!))NU6azzg>)3x
+znKARW;TK(I+0<6eYLYaGj8k-T;;bnPbdQWkwHwNi-!D^5!QProaErFh&d8Q`-t?Dg
+zU&pFp70I4z=#Z?qpm~bxz8>V#u$~Dz^yCw)&EYZ2@H`5mOv-wwp$ryf)D2}fkb*)9
+zw3p2=Xan7B@Z<KX={oibd!>r+vAdtI+f$%TNHu{*!3d0RN!k8-sWiH4E;W5-X6o|n
+z%v@H(F+8MT=j|n`;V_P<_`Zf8;D;)Hq~XW-iH0E@Qn2gUe)bbf^q=VKmm%nTvcK;+
+z4Rgq7cmN+}2Ixk?)QJLHQ-8Aqs#?4%eyZVR{EV$R6vqtL@N@h^!!PlQieG8?HGZSv
+zRs2@P?=(D(-^-mpXgG>t4S&R+RQy@PU+@}pqUuP72cexGEt(b+m<_jLl&;}*ydjsr
+zYIqZ`Xm|@HHqlL$q=t3e(C{|iVgG1!d@q-~Zd4H}Zff`&-qmmme^;=tB~RE#WKiDY
+z0oM$=mS>EDJF6H}4jBalO%>O-TNVFMFxH5e0d1Mqw`H1w6OE(<1y(!W1P5Yy$ce(m
+zY~SJehP`N5jx93bk$G|O(#96mxXCq9!d4oIjAp7x9gCu&$N#4o_Lc>iZVDb4+@xLA
+z+3t8Fu&R(t#G1@iJPkM%`DY!sd<=QDZ8xlgk&V#R>;ye#WYh2lIbNSOgis9*TX~f1
+zqWje(j1GN{A0)`i&T%_MWFq^J1R*@ZQy%AEpG}bcmN(<i6b*}MF;MGTBzdDQIoQb~
+zk^%RNUO3?mG>J*2U_)X$(z-@NvS56iV8jO}C#ALyYMWr>lXb4A9Xn5fN1Ii0i%FFo
+zi_?wpg`8a!>~7$<)Vs|n6ogHJBeet(ptVt`YlpO{jy?ji6@A=yLJ<rJePy<VObR9&
+zXs!uKi`;6EBa!TKCL3Fp-Kd-z=WQa)u&gVmg4p0i32T2-_9?Mw8d=W3%+}QGY<glW
+zm7SQGzC4+knU*8v|7Ilk-E4Yta^cY*ieg%Cf>B!bXe}b;0%*ir^i4~jDq6ldF9#k@
+zkRy_RxDjo&&orJ`a4$cH+xVFr<BvlC*ETsJfFH5E-^QyR?D71s*?W+Ckf-!*dy<}W
+z2iJ%BUguTewPR=<%Imyo!y{ZJ5wHixxoRN+PGE#j3Qm%_JzzeAj^JI-Q0!f_U1%SA
+z6YZHBh?UUs7PeKT$-fo=2e6yp;Z=z}k;F&&E=D=0D(-wF&~v(?XPtW5xi>MCRM!zt
+zQ%`3yaVXi<PPHXyQ_1azOXz+NT_x<eft|Z>2cPdOVb@DHu$$C9mDhXT#$9ckK0txe
+z(Y<sP#8jp7yNKTa9wa))aE{8QsePg1$W#@hNb#oxv|~6!$Hqz3!)y5NY~|f!+}r5d
+zIZ`W_sJQkYx+dfL!d6}Dyoufm>)4z8KnWkLx>>^ACEQa+=tG2NI=THw2v18u`Vpr&
+zBXs8!olFssQNl5f1w6*T@J!-)qyu1vLbEHtT(1C=M+nRU?k4?531Af>NfkmQsaipl
+zE<>bf5k%IOAxb8aePOEHJ53CjD1EnHh8lYnvGyD2Z-PfGNRSYZ$B9Rlc$_C5PZE!d
+z^yw+yT_z?*4IWkn4^hD*8{sid-YKR`h=)up6_P5%LsCgRLaJ%LonahyqV0WTRm`e*
+zoc~X=1#!2&T4YMK$u9t|vZOEby{wkro7l(9*gtjn4cu44ftwh(aOm(l244#pWcGIl
+zgo_Nhzz!_cWPESr2*uFxCz!Kw+<|!l&_=hV!VBcR7~EY73Rl*^Q>1%3hmX+)1s@k!
+Rq}&{75_~l9T`ZjL{Vz>_%-sM0
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/test/classes/com/crossover/techtrial/controller/MemberControllerTest.class b/out/test/classes/com/crossover/techtrial/controller/MemberControllerTest.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..afcfe93fd6e6c311b3c29b2d824d97dc60583ec4
+GIT binary patch
+literal 7163
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/out/test/classes/com/crossover/techtrial/controller/TransactionControllerTest.class b/out/test/classes/com/crossover/techtrial/controller/TransactionControllerTest.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..23433a1b09d5f992a991ccd93edec7848f2a661b
+GIT binary patch
+literal 10348
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/java/com/crossover/techtrial/CrossLibraryApplication.java b/src/main/java/com/crossover/techtrial/CrossLibraryApplication.java
+index 5b89652..8af3077 100644
+--- a/src/main/java/com/crossover/techtrial/CrossLibraryApplication.java
++++ b/src/main/java/com/crossover/techtrial/CrossLibraryApplication.java
+@@ -5,11 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
+ 
+ /**
+  * @author crossover
+- *
+  */
+ @SpringBootApplication
+ public class CrossLibraryApplication {
+-  public static void main(String[] args) {
+-    SpringApplication.run(CrossLibraryApplication.class, args);
+-  }
++    public static void main(String[] args) {
++        SpringApplication.run(CrossLibraryApplication.class, args);
++    }
+ }
+diff --git a/src/main/java/com/crossover/techtrial/controller/BookController.java b/src/main/java/com/crossover/techtrial/controller/BookController.java
+index a171514..ab306bf 100644
+--- a/src/main/java/com/crossover/techtrial/controller/BookController.java
++++ b/src/main/java/com/crossover/techtrial/controller/BookController.java
+@@ -1,9 +1,12 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.controller;
+ 
+ import java.util.List;
++import java.util.Optional;
++
++import com.crossover.techtrial.repositories.BookRepository;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.http.ResponseEntity;
+ import org.springframework.web.bind.annotation.GetMapping;
+@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
+ import com.crossover.techtrial.model.Book;
+ import com.crossover.techtrial.service.BookService;
+ 
++import javax.swing.text.html.Option;
++import javax.validation.Valid;
++
+ /**
+  * BookController for Book related APIs.
+  * @author crossover
+@@ -21,36 +27,39 @@ import com.crossover.techtrial.service.BookService;
+  */
+ @RestController
+ public class BookController {
+-  
+-  @Autowired 
+-  private BookService bookService;
+-  
+-  /*
+-   * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
+-   */
+-  @GetMapping(path ="/api/book")
+-  public ResponseEntity<List<Book>> getBooks() {
+-    return ResponseEntity.ok(bookService.getAll());
+-  }
+-
+-  /*
+-   * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
+-   */
+-  @PostMapping(path ="/api/book")
+-  public ResponseEntity<Book> saveBook(@RequestBody Book book) {
+-    return ResponseEntity.ok(bookService.save(book));
+-  }
+-  
+-  /*
+-   * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
+-   */
+-  @GetMapping(path = "/api/book/{book-id}")
+-  public ResponseEntity<Book> getRideById(@PathVariable(name="book-id",required=true)Long bookId){
+-    Book book = bookService.findById(bookId);
+-    if (book!=null)
+-      return ResponseEntity.ok(book);
+-    return ResponseEntity.notFound().build();
+-  }
+-
+-  
++
++    @Autowired
++    private BookRepository bookRepository;
++
++    @Autowired
++    private BookService bookService;
++
++    /*
++     * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
++     */
++    @GetMapping(path = "/api/book")
++    public ResponseEntity<List<Book>> getBooks() {
++        return ResponseEntity.ok(bookService.getAll());
++    }
++
++    /*
++     * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
++     */
++    @PostMapping(path = "/api/book")
++    public ResponseEntity<Book> saveBook(@Valid  @RequestBody Book book) {
++        return ResponseEntity.ok(bookRepository.save(book));
++    }
++
++    /*
++     * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
++     */
++    @GetMapping(path = "/api/book/{book-id}")
++    public ResponseEntity<Book> getBookById(@PathVariable(name = "book-id", required = true) Long bookId) {
++        Optional<Book> optionalBook = bookRepository.findById(bookId);
++        if (optionalBook.isPresent())
++            return ResponseEntity.ok(optionalBook.get());
++        return ResponseEntity.notFound().build();
++    }
++
++
+ }
+diff --git a/src/main/java/com/crossover/techtrial/controller/MemberController.java b/src/main/java/com/crossover/techtrial/controller/MemberController.java
+index 7f613ce..14bde41 100644
+--- a/src/main/java/com/crossover/techtrial/controller/MemberController.java
++++ b/src/main/java/com/crossover/techtrial/controller/MemberController.java
+@@ -1,83 +1,85 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.controller;
+ 
+-import java.time.LocalDateTime;
+-import java.util.ArrayList;
+-import java.util.List;
+-import org.springframework.beans.factory.annotation.Autowired;
+-import org.springframework.format.annotation.DateTimeFormat;
+-import org.springframework.http.ResponseEntity;
+-import org.springframework.web.bind.annotation.GetMapping;
+-import org.springframework.web.bind.annotation.PathVariable;
+-import org.springframework.web.bind.annotation.PostMapping;
+-import org.springframework.web.bind.annotation.RequestBody;
+-import org.springframework.web.bind.annotation.RequestParam;
+-import org.springframework.web.bind.annotation.RestController;
+ import com.crossover.techtrial.dto.TopMemberDTO;
+ import com.crossover.techtrial.model.Member;
++import com.crossover.techtrial.repositories.MemberRepository;
+ import com.crossover.techtrial.service.MemberService;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.format.annotation.DateTimeFormat;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.*;
++import org.springframework.data.domain.PageRequest;
++
++import javax.validation.Valid;
++import java.time.LocalDateTime;
++import java.util.List;
++import java.util.Optional;
+ 
+ /**
+- * 
++ *
+  * @author crossover
+  */
+ 
+ @RestController
+ public class MemberController {
+-  
+-  @Autowired
+-  MemberService memberService;
+-  /*
+-   * PLEASE DO NOT CHANGE SIGNATURE OR METHOD TYPE OF END POINTS
+-   */
+-  @PostMapping(path = "/api/member")
+-  public ResponseEntity<Member> register(@RequestBody Member p) {
+-    return ResponseEntity.ok(memberService.save(p));
+-  }
+-  
+-  /*
+-   * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
+-   */
+-  @GetMapping(path = "/api/member")
+-  public ResponseEntity<List<Member>> getAll() {
+-    return ResponseEntity.ok(memberService.findAll());
+-  }
+-  
+-  /*
+-   * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
+-   */
+-  @GetMapping(path = "/api/member/{member-id}")
+-  public ResponseEntity<Member> getMemberById(@PathVariable(name="member-id", required=true)Long memberId) {
+-    Member member = memberService.findById(memberId);
+-    if (member != null) {
+-      return ResponseEntity.ok(member);
++
++    @Autowired
++    MemberRepository memberRepository;
++
++    @Autowired
++    private MemberService memberService;
++
++    /*
++     * PLEASE DO NOT CHANGE SIGNATURE OR METHOD TYPE OF END POINTS
++     */
++    @PostMapping(path = "/api/member")
++    public ResponseEntity<Member> registerMember(@Valid @RequestBody Member p) {
++        return ResponseEntity.ok(memberRepository.save(p));
+     }
+-    return ResponseEntity.notFound().build();
+-  }
+-  
+-  
+-  /**
+-   * This API returns the top 5 members who issued the most books within the search duration. 
+-   * Only books that have dateOfIssue and dateOfReturn within the mentioned duration should be counted.
+-   * Any issued book where dateOfIssue or dateOfReturn is outside the search, should not be considered. 
+-   * 
+-   * DONT CHANGE METHOD SIGNATURE AND RETURN TYPES
+-   * @return
+-   */
+-  @GetMapping(path = "/api/member/top-member")
+-  public ResponseEntity<List<TopMemberDTO>> getTopMembers(
+-      @RequestParam(value="startTime", required=true) @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") LocalDateTime startTime,
+-      @RequestParam(value="endTime", required=true) @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") LocalDateTime endTime){
+-    List<TopMemberDTO> topDrivers = new ArrayList<>();
++
++    /*
++     * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
++     */
++    @GetMapping(path = "/api/member")
++    public ResponseEntity<List<Member>> getAll() {
++        return ResponseEntity.ok(memberService.findAll());
++    }
++
++    /*
++     * PLEASE DO NOT CHANGE API SIGNATURE OR METHOD TYPE OF END POINTS
++     */
++    @GetMapping(path = "/api/member/{member-id}")
++    public ResponseEntity<Member> getMemberById(@PathVariable(name = "member-id", required = true) Long memberId) {
++        Optional<Member> optionalMember = memberRepository.findById(memberId);
++        if (optionalMember.isPresent()) {
++            return ResponseEntity.ok(optionalMember.get());
++        }
++        return ResponseEntity.notFound().build();
++    }
++
++
+     /**
+-     * Your Implementation Here. 
+-     * 
++     * This API returns the top 5 members who issued the most books within the search duration.
++     * Only books that have dateOfIssue and dateOfReturn within the mentioned duration should be counted.
++     * Any issued book where dateOfIssue or dateOfReturn is outside the search, should not be considered.
++     *
++     * DONT CHANGE METHOD SIGNATURE AND RETURN TYPES
++     * @return
+      */
+-    
+-    return ResponseEntity.ok(topDrivers);
+-    
+-  }
+-  
++    @GetMapping(path = "/api/member/top-member")
++    public ResponseEntity<List<TopMemberDTO>> getTopMembers(
++            @RequestParam(value = "startTime", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime startTime,
++            @RequestParam(value = "endTime", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime endTime) {
++        // checks if startDate is >= than endTime
++        if (startTime.compareTo(endTime) >= 0) {
++            return ResponseEntity.badRequest().build();
++        }
++        List<TopMemberDTO> topDrivers = memberRepository.findTop5MemberList(startTime, endTime, PageRequest.of(0,5));
++        return ResponseEntity.ok(topDrivers);
++
++    }
++
+ }
+diff --git a/src/main/java/com/crossover/techtrial/controller/TransactionController.java b/src/main/java/com/crossover/techtrial/controller/TransactionController.java
+index 83f41b8..96178d6 100644
+--- a/src/main/java/com/crossover/techtrial/controller/TransactionController.java
++++ b/src/main/java/com/crossover/techtrial/controller/TransactionController.java
+@@ -1,10 +1,14 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.controller;
+ 
+ import java.time.LocalDateTime;
+ import java.util.Map;
++import java.util.Optional;
++
++import com.crossover.techtrial.model.Book;
++import com.crossover.techtrial.model.MembershipStatus;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.http.ResponseEntity;
+ import org.springframework.web.bind.annotation.PatchMapping;
+@@ -23,35 +27,66 @@ import com.crossover.techtrial.repositories.TransactionRepository;
+  */
+ @RestController
+ public class TransactionController {
+-  
+-  @Autowired TransactionRepository transactionRepository;
+-  
+-  @Autowired BookRepository bookRepository;
+-  
+-  @Autowired MemberRepository memberRepository;
+-  /*
+-   * PLEASE DO NOT CHANGE SIGNATURE OR METHOD TYPE OF END POINTS
+-   * Example Post Request :  { "bookId":1,"memberId":33 }
+-   */
+-  @PostMapping(path = "/api/transaction")
+-  public ResponseEntity<Transaction> issueBookToMember(@RequestBody Map<String, Long> params){
+-    
+-    Long bookId = params.get("bookId");
+-    Long memberId = params.get("memberId");
+-    Transaction transaction = new Transaction();
+-    transaction.setBook(bookRepository.findById(bookId).orElse(null));
+-    transaction.setMember(memberRepository.findById(memberId).get());
+-    transaction.setDateOfIssue(LocalDateTime.now());    
+-    return ResponseEntity.ok().body(transactionRepository.save(transaction));
+-  }
+-  /*
+-   * PLEASE DO NOT CHANGE SIGNATURE OR METHOD TYPE OF END POINTS
+-   */
+-  @PatchMapping(path= "/api/transaction/{transaction-id}/return")
+-  public ResponseEntity<Transaction> returnBookTransaction(@PathVariable(name="transaction-id") Long transactionId){
+-    Transaction transaction = transactionRepository.findById(transactionId).get();
+-    transaction.setDateOfReturn(LocalDateTime.now());
+-    return ResponseEntity.ok().body(transaction);
+-  }
++
++    @Autowired
++    TransactionRepository transactionRepository;
++
++    @Autowired
++    BookRepository bookRepository;
++
++    @Autowired
++    MemberRepository memberRepository;
++
++    /*
++     * PLEASE DO NOT CHANGE SIGNATURE OR METHOD TYPE OF END POINTS
++     * Example Post Request :  { "bookId":1,"memberId":33 }
++     */
++    @PostMapping(path = "/api/transaction")
++    public ResponseEntity<Transaction> issueBookToMember(@RequestBody Map<String, Long> params) {
++
++        Long bookId = params.get("bookId");
++        Long memberId = params.get("memberId");
++        Transaction transaction = new Transaction();
++        Optional<Book> optionalBook = bookRepository.findById(bookId);
++        // check if book ( bookId ) exists
++        if (!optionalBook.isPresent()) {
++            return ResponseEntity.notFound().build();
++        }
++        transaction.setBook(bookRepository.findById(bookId).get());
++        // check if already exists an active transaction for this book ( bookId )
++        if (transactionRepository.getByBookIdAndDateOfReturnIsNull(bookId).isPresent()) {
++            return ResponseEntity.status(403).build();
++        }
++        // check if member already has reached the book issuance limit number
++        if (transactionRepository.countByMemberIdAndDateOfReturnIsNull(memberId) >= 5) {
++            return ResponseEntity.status(403).build();
++        }
++        transaction.setMember(memberRepository.findById(memberId).get());
++        // check if membership is active
++        if (!transaction.getMember().getMembershipStatus().equals(MembershipStatus.ACTIVE)) {
++            return ResponseEntity.status(403).build();
++        }
++        transaction.setDateOfIssue(LocalDateTime.now());
++        return ResponseEntity.ok().body(transactionRepository.save(transaction));
++    }
++
++    /*
++     * PLEASE DO NOT CHANGE SIGNATURE OR METHOD TYPE OF END POINTS
++     */
++    @PatchMapping(path = "/api/transaction/{transaction-id}/return")
++    public ResponseEntity<Transaction> returnBookTransaction(@PathVariable(name = "transaction-id") Long transactionId) {
++        Optional<Transaction> optionalTransaction = transactionRepository.findById(transactionId);
++        // check if transaction ( transactionId ) exists
++        if (!optionalTransaction.isPresent()) {
++            return ResponseEntity.notFound().build();
++        }
++        // check if transaction ( transactionId ) is already closed
++        if (transactionRepository.getByIdAndDateOfReturnNotNull(transactionId).isPresent()) {
++            return ResponseEntity.status(403).build();
++        }
++        Transaction transaction = optionalTransaction.get();
++        transaction.setDateOfReturn(LocalDateTime.now());
++        return ResponseEntity.ok().body(transactionRepository.save(transaction));
++    }
+ 
+ }
+diff --git a/src/main/java/com/crossover/techtrial/dto/TopMemberDTO.java b/src/main/java/com/crossover/techtrial/dto/TopMemberDTO.java
+index dd80ffd..256e63d 100644
+--- a/src/main/java/com/crossover/techtrial/dto/TopMemberDTO.java
++++ b/src/main/java/com/crossover/techtrial/dto/TopMemberDTO.java
+@@ -1,5 +1,5 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.dto;
+ 
+@@ -8,65 +8,65 @@ package com.crossover.techtrial.dto;
+  *
+  */
+ public class TopMemberDTO {
+-  
+-  /**
+-   * Constructor for TopMemberDTO
+-   * @param memberId
+-   * @param name
+-   * @param email
+-   * @param bookCount
+-   */
+-  public TopMemberDTO(Long memberId,
+-      String name, 
+-      String email, 
+-      Integer bookCount) {
+-    this.name = name;
+-    this.email = email;
+-    this.memberId = memberId;
+-    this.bookCount = bookCount;
+-  }
+-  
+-  public TopMemberDTO() {
+-    
+-  }
+-  
+-  private Long memberId;
+-  
+-  private String name;
+-  
+-  private String email;
+-  
+-  private Integer bookCount;
+-
+-  public Long getMemberId() {
+-    return memberId;
+-  }
+-
+-  public void setMemberId(Long memberId) {
+-    this.memberId = memberId;
+-  }
+-
+-  public String getName() {
+-    return name;
+-  }
+-
+-  public void setName(String name) {
+-    this.name = name;
+-  }
+-
+-  public String getEmail() {
+-    return email;
+-  }
+-
+-  public void setEmail(String email) {
+-    this.email = email;
+-  }
+-
+-  public Integer getBookCount() {
+-    return bookCount;
+-  }
+-
+-  public void setBookCount(Integer bookCount) {
+-    this.bookCount = bookCount;
+-  }
++
++    private Long memberId;
++
++    private String name;
++
++    private String email;
++
++    private long bookCount;
++
++    public TopMemberDTO() {
++
++    }
++
++    /**
++     * Constructor for TopMemberDTO
++     * @param memberId
++     * @param name
++     * @param email
++     * @param bookCount
++     */
++    public TopMemberDTO(Long memberId,
++                        String name,
++                        String email,
++                        long bookCount) {
++        this.name = name;
++        this.email = email;
++        this.memberId = memberId;
++        this.bookCount = bookCount;
++    }
++
++    public Long getMemberId() {
++        return memberId;
++    }
++
++    public void setMemberId(Long memberId) {
++        this.memberId = memberId;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getEmail() {
++        return email;
++    }
++
++    public void setEmail(String email) {
++        this.email = email;
++    }
++
++    public long getBookCount() {
++        return bookCount;
++    }
++
++    public void setBookCount(long bookCount) {
++        this.bookCount = bookCount;
++    }
+ }
+diff --git a/src/main/java/com/crossover/techtrial/exceptions/GlobalExceptionHandler.java b/src/main/java/com/crossover/techtrial/exceptions/GlobalExceptionHandler.java
+index e39127a..d8a4fcd 100644
+--- a/src/main/java/com/crossover/techtrial/exceptions/GlobalExceptionHandler.java
++++ b/src/main/java/com/crossover/techtrial/exceptions/GlobalExceptionHandler.java
+@@ -1,6 +1,7 @@
+ package com.crossover.techtrial.exceptions;
+ 
+ import java.util.AbstractMap;
++
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+ import org.springframework.http.HttpStatus;
+@@ -13,17 +14,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
+ @Component
+ public class GlobalExceptionHandler {
+ 
+-  private static final Logger LOG = LoggerFactory.getLogger(GlobalExceptionHandler.class);
++    private static final Logger LOG = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+ 
+-  /**
+-   * Global Exception handler for all exceptions.
+-   */
+-  @ExceptionHandler
+-  public ResponseEntity<AbstractMap.SimpleEntry<String, String>> handle(Exception exception) {
+-    // general exception
+-    LOG.error("Exception: Unable to process this request. ", exception);
+-    AbstractMap.SimpleEntry<String, String> response =
+-        new AbstractMap.SimpleEntry<>("message", "Unable to process this request.");
+-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+-  }
++    /**
++     * Global Exception handler for all exceptions.
++     */
++    @ExceptionHandler
++    public ResponseEntity<AbstractMap.SimpleEntry<String, String>> handle(Exception exception) {
++        // general exception
++        LOG.error("Exception: Unable to process this request. ", exception);
++        AbstractMap.SimpleEntry<String, String> response =
++                new AbstractMap.SimpleEntry<>("message", "Unable to process this request.");
++        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
++    }
+ }
+diff --git a/src/main/java/com/crossover/techtrial/model/Book.java b/src/main/java/com/crossover/techtrial/model/Book.java
+index b0ecd65..21b13a8 100644
+--- a/src/main/java/com/crossover/techtrial/model/Book.java
++++ b/src/main/java/com/crossover/techtrial/model/Book.java
+@@ -1,5 +1,5 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.model;
+ 
+@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
+ import javax.persistence.GenerationType;
+ import javax.persistence.Id;
+ import javax.persistence.Table;
++import javax.validation.constraints.NotEmpty;
+ 
+ /**
+  * @author kshah
+@@ -17,72 +18,71 @@ import javax.persistence.Table;
+  */
+ @Entity
+ @Table(name = "book")
+-public class Book implements Serializable{
++public class Book implements Serializable {
++
++    /**
++     *
++     */
++    private static final long serialVersionUID = -5241781253380015253L;
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    Long id;
++
++    @Column(name = "title")
++    String title;
+ 
+-  /**
+-   * 
+-   */
+-  private static final long serialVersionUID = -5241781253380015253L;
+-  
+-  @Id
+-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+-  Long id;
++    public Long getId() {
++        return id;
++    }
+ 
+-  @Column(name = "title")
+-  String title;
++    public void setId(Long id) {
++        this.id = id;
++    }
+ 
+-  public Long getId() {
+-    return id;
+-  }
++    public String getTitle() {
++        return title;
++    }
+ 
+-  public void setId(Long id) {
+-    this.id = id;
+-  }
++    public void setTitle(String title) {
++        this.title = title;
++    }
+ 
+-  public String getTitle() {
+-    return title;
+-  }
++    @Override
++    public int hashCode() {
++        final int prime = 31;
++        int result = 1;
++        result = prime * result + ((id == null) ? 0 : id.hashCode());
++        result = prime * result + ((title == null) ? 0 : title.hashCode());
++        return result;
++    }
+ 
+-  public void setTitle(String title) {
+-    this.title = title;
+-  }
+-  
+-  @Override
+-  public int hashCode() {
+-    final int prime = 31;
+-    int result = 1;
+-    result = prime * result + ((id == null) ? 0 : id.hashCode());
+-    result = prime * result + ((title == null) ? 0 : title.hashCode());
+-    return result;
+-  }
++    @Override
++    public boolean equals(Object obj) {
++        if (this == obj)
++            return true;
++        if (obj == null)
++            return false;
++        if (getClass() != obj.getClass())
++            return false;
++        Book other = (Book) obj;
++        if (id == null) {
++            if (other.id != null)
++                return false;
++        } else if (!id.equals(other.id))
++            return false;
++        if (title == null) {
++            if (other.title != null)
++                return false;
++        } else if (!title.equals(other.title))
++            return false;
++        return true;
++    }
+ 
+-  @Override
+-  public boolean equals(Object obj) {
+-    if (this == obj)
+-      return true;
+-    if (obj == null)
+-      return false;
+-    if (getClass() != obj.getClass())
+-      return false;
+-    Book other = (Book) obj;
+-    if (id == null) {
+-      if (other.id != null)
+-        return false;
+-    } else if (!id.equals(other.id))
+-      return false;
+-    if (title == null) {
+-      if (other.title != null)
+-        return false;
+-    } else if (!title.equals(other.title))
+-      return false;
+-    return true;
+-  }
++    @Override
++    public String toString() {
++        return "Book [id=" + id + ", title=" + title + "]";
++    }
+ 
+-  @Override
+-  public String toString() {
+-    return "Book [id=" + id + ", title=" + title + "]";
+-  }
+-  
+-  
+ 
+ }
+diff --git a/src/main/java/com/crossover/techtrial/model/Member.java b/src/main/java/com/crossover/techtrial/model/Member.java
+index 99cfb29..d4aa1c8 100644
+--- a/src/main/java/com/crossover/techtrial/model/Member.java
++++ b/src/main/java/com/crossover/techtrial/model/Member.java
+@@ -1,8 +1,10 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.model;
+ 
++import org.hibernate.validator.constraints.Length;
++
+ import java.io.Serializable;
+ import java.time.LocalDateTime;
+ import javax.persistence.Column;
+@@ -13,6 +15,8 @@ import javax.persistence.GeneratedValue;
+ import javax.persistence.GenerationType;
+ import javax.persistence.Id;
+ import javax.persistence.Table;
++import javax.validation.constraints.NotEmpty;
++import javax.validation.constraints.Pattern;
+ 
+ /**
+  * @author kshah
+@@ -20,109 +24,111 @@ import javax.persistence.Table;
+  */
+ @Entity
+ @Table(name = "member")
+-public class Member implements Serializable{
+-  
+-  private static final long serialVersionUID = 9045098179799205444L;
+-  
+-  @Id
+-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+-  Long id;
+-
+-  @Column(name = "name")
+-  String name;
+-
+-  @Column(name = "email")
+-  String email;
+-  
+-  @Enumerated(EnumType.STRING)
+-  MembershipStatus membershipStatus;
+-  
+-  @Column(name = "membership_start_date")
+-  LocalDateTime membershipStartDate;
+-
+-  public Long getId() {
+-    return id;
+-  }
+-
+-  public void setId(Long id) {
+-    this.id = id;
+-  }
+-
+-  public String getName() {
+-    return name;
+-  }
+-
+-  public void setName(String name) {
+-    this.name = name;
+-  }
+-
+-  public String getEmail() {
+-    return email;
+-  }
+-
+-  public void setEmail(String email) {
+-    this.email = email;
+-  }
+-
+-  public MembershipStatus getMembershipStatus() {
+-    return membershipStatus;
+-  }
+-
+-  public void setMembershipStatus(MembershipStatus membershipStatus) {
+-    this.membershipStatus = membershipStatus;
+-  }
+-
+-  public LocalDateTime getMembershipStartDate() {
+-    return membershipStartDate;
+-  }
+-
+-  public void setMembershipStartDate(LocalDateTime membershipStartDate) {
+-    this.membershipStartDate = membershipStartDate;
+-  }
+-
+-  @Override
+-  public int hashCode() {
+-    final int prime = 31;
+-    int result = 1;
+-    result = prime * result + ((email == null) ? 0 : email.hashCode());
+-    result = prime * result + ((id == null) ? 0 : id.hashCode());
+-    result = prime * result + ((name == null) ? 0 : name.hashCode());
+-    return result;
+-  }
+-
+-  @Override
+-  public boolean equals(Object obj) {
+-    if (this == obj)
+-      return true;
+-    if (obj == null)
+-      return false;
+-    if (getClass() != obj.getClass())
+-      return false;
+-    Member other = (Member) obj;
+-    if (email == null) {
+-      if (other.email != null)
+-        return false;
+-    } else if (!email.equals(other.email))
+-      return false;
+-    if (id == null) {
+-      if (other.id != null)
+-        return false;
+-    } else if (!id.equals(other.id))
+-      return false;
+-    if (name == null) {
+-      if (other.name != null)
+-        return false;
+-    } else if (!name.equals(other.name))
+-      return false;
+-    return true;
+-  }
+-
+-  @Override
+-  public String toString() {
+-    return "Member [id=" + id + ", name=" + name + ", email=" + email + "]";
+-  }
+-  
+-  
+-  
++public class Member implements Serializable {
++
++    private static final long serialVersionUID = 9045098179799205444L;
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    Long id;
++
++    @Column(name = "name")
++    @Length(min = 2, max = 100, message = "The name must be composed by 2 - 100 characters")
++    @Pattern(regexp = "^[a-zA-Z]+[A-Za-z ,.'-]+$", message = "The name format is not valid")
++    String name;
++
++    @Column(name = "email", unique = true)
++    @NotEmpty
++    String email;
++
++    @Column(name = "membership_status")
++    @Enumerated(EnumType.STRING)
++    MembershipStatus membershipStatus;
++
++    @Column(name = "membership_start_date")
++    LocalDateTime membershipStartDate;
++
++    public Long getId() {
++        return id;
++    }
++
++    public void setId(Long id) {
++        this.id = id;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getEmail() {
++        return email;
++    }
++
++    public void setEmail(String email) {
++        this.email = email;
++    }
++
++    public MembershipStatus getMembershipStatus() {
++        return membershipStatus;
++    }
++
++    public void setMembershipStatus(MembershipStatus membershipStatus) {
++        this.membershipStatus = membershipStatus;
++    }
++
++    public LocalDateTime getMembershipStartDate() {
++        return membershipStartDate;
++    }
++
++    public void setMembershipStartDate(LocalDateTime membershipStartDate) {
++        this.membershipStartDate = membershipStartDate;
++    }
++
++    @Override
++    public int hashCode() {
++        final int prime = 31;
++        int result = 1;
++        result = prime * result + ((email == null) ? 0 : email.hashCode());
++        result = prime * result + ((id == null) ? 0 : id.hashCode());
++        result = prime * result + ((name == null) ? 0 : name.hashCode());
++        return result;
++    }
++
++    @Override
++    public boolean equals(Object obj) {
++        if (this == obj)
++            return true;
++        if (obj == null)
++            return false;
++        if (getClass() != obj.getClass())
++            return false;
++        Member other = (Member) obj;
++        if (email == null) {
++            if (other.email != null)
++                return false;
++        } else if (!email.equals(other.email))
++            return false;
++        if (id == null) {
++            if (other.id != null)
++                return false;
++        } else if (!id.equals(other.id))
++            return false;
++        if (name == null) {
++            if (other.name != null)
++                return false;
++        } else if (!name.equals(other.name))
++            return false;
++        return true;
++    }
++
++    @Override
++    public String toString() {
++        return "Member [id=" + id + ", name=" + name + ", email=" + email + "]";
++    }
++
+ 
+ }
+diff --git a/src/main/java/com/crossover/techtrial/model/MembershipStatus.java b/src/main/java/com/crossover/techtrial/model/MembershipStatus.java
+index 38f1533..4e089a0 100644
+--- a/src/main/java/com/crossover/techtrial/model/MembershipStatus.java
++++ b/src/main/java/com/crossover/techtrial/model/MembershipStatus.java
+@@ -1,5 +1,5 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.model;
+ 
+@@ -8,7 +8,7 @@ package com.crossover.techtrial.model;
+  *
+  */
+ public enum MembershipStatus {
+-  ACTIVE,
+-  INACTIVE,
+-  BLOCKED
++    ACTIVE,
++    INACTIVE,
++    BLOCKED
+ }
+diff --git a/src/main/java/com/crossover/techtrial/model/Transaction.java b/src/main/java/com/crossover/techtrial/model/Transaction.java
+index 4a9a262..e2e9ea3 100644
+--- a/src/main/java/com/crossover/techtrial/model/Transaction.java
++++ b/src/main/java/com/crossover/techtrial/model/Transaction.java
+@@ -1,5 +1,5 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.model;
+ 
+@@ -20,76 +20,76 @@ import javax.persistence.Table;
+  *
+  */
+ @Entity
+-@Table(name="transaction")
++@Table(name = "transaction")
+ public class Transaction implements Serializable {
+ 
+-  /**
+-   * 
+-   */
+-  private static final long serialVersionUID = 8951221480021840448L;
+-  
+-  @Id
+-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+-  Long id;
+-  
+-  @OneToOne
+-  @JoinColumn(name = "book_id", referencedColumnName = "id")
+-  Book book;
+-  
+-  @OneToOne
+-  @JoinColumn(name="member_id", referencedColumnName="id")
+-  Member member;
+-  //Date and time of issuance of this book
+-  @Column(name="date_of_issue")
+-  LocalDateTime dateOfIssue;
+-  
+-  //Date and time of return of this book
+-  @Column(name="date_of_return")
+-  LocalDateTime dateOfReturn;
+-
+-  public Long getId() {
+-    return id;
+-  }
+-
+-  public void setId(Long id) {
+-    this.id = id;
+-  }
+-
+-  public Book getBook() {
+-    return book;
+-  }
+-
+-  public void setBook(Book book) {
+-    this.book = book;
+-  }
+-
+-  public Member getMember() {
+-    return member;
+-  }
+-
+-  public void setMember(Member member) {
+-    this.member = member;
+-  }
+-
+-  public LocalDateTime getDateOfIssue() {
+-    return dateOfIssue;
+-  }
+-
+-  public void setDateOfIssue(LocalDateTime dateOfIssue) {
+-    this.dateOfIssue = dateOfIssue;
+-  }
+-
+-  public LocalDateTime getDateOfReturn() {
+-    return dateOfReturn;
+-  }
+-
+-  public void setDateOfReturn(LocalDateTime dateOfReturn) {
+-    this.dateOfReturn = dateOfReturn;
+-  }
+-
+-  @Override
+-  public String toString() {
+-    return "Transaction [id=" + id + ", book=" + book + ", member=" + member + ", dateOfIssue=" + dateOfIssue + ", dateOfReturn=" + dateOfReturn + "]";
+-  }
++    /**
++     *
++     */
++    private static final long serialVersionUID = 8951221480021840448L;
++
++    @Id
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    Long id;
++
++    @OneToOne
++    @JoinColumn(name = "book_id", referencedColumnName = "id")
++    Book book;
++
++    @OneToOne
++    @JoinColumn(name = "member_id", referencedColumnName = "id")
++    Member member;
++    //Date and time of issuance of this book
++    @Column(name = "date_of_issue")
++    LocalDateTime dateOfIssue;
++
++    //Date and time of return of this book
++    @Column(name = "date_of_return")
++    LocalDateTime dateOfReturn;
++
++    public Long getId() {
++        return id;
++    }
++
++    public void setId(Long id) {
++        this.id = id;
++    }
++
++    public Book getBook() {
++        return book;
++    }
++
++    public void setBook(Book book) {
++        this.book = book;
++    }
++
++    public Member getMember() {
++        return member;
++    }
++
++    public void setMember(Member member) {
++        this.member = member;
++    }
++
++    public LocalDateTime getDateOfIssue() {
++        return dateOfIssue;
++    }
++
++    public void setDateOfIssue(LocalDateTime dateOfIssue) {
++        this.dateOfIssue = dateOfIssue;
++    }
++
++    public LocalDateTime getDateOfReturn() {
++        return dateOfReturn;
++    }
++
++    public void setDateOfReturn(LocalDateTime dateOfReturn) {
++        this.dateOfReturn = dateOfReturn;
++    }
++
++    @Override
++    public String toString() {
++        return "Transaction [id=" + id + ", book=" + book + ", member=" + member + ", dateOfIssue=" + dateOfIssue + ", dateOfReturn=" + dateOfReturn + "]";
++    }
+ 
+ }
+diff --git a/src/main/java/com/crossover/techtrial/repositories/BookRepository.java b/src/main/java/com/crossover/techtrial/repositories/BookRepository.java
+index 0366c26..2296645 100644
+--- a/src/main/java/com/crossover/techtrial/repositories/BookRepository.java
++++ b/src/main/java/com/crossover/techtrial/repositories/BookRepository.java
+@@ -1,5 +1,5 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.repositories;
+ 
+diff --git a/src/main/java/com/crossover/techtrial/repositories/MemberRepository.java b/src/main/java/com/crossover/techtrial/repositories/MemberRepository.java
+index 303d98a..1d9edc3 100644
+--- a/src/main/java/com/crossover/techtrial/repositories/MemberRepository.java
++++ b/src/main/java/com/crossover/techtrial/repositories/MemberRepository.java
+@@ -1,20 +1,36 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.repositories;
+ 
+-import java.util.List;
+-import java.util.Optional;
+-import org.springframework.data.repository.PagingAndSortingRepository;
+-import org.springframework.data.rest.core.annotation.RestResource;
++import com.crossover.techtrial.dto.TopMemberDTO;
+ import com.crossover.techtrial.model.Member;
++import org.springframework.data.jpa.repository.Query;
++import org.springframework.data.repository.CrudRepository;
++import org.springframework.data.rest.core.annotation.RestResource;
++
++import org.springframework.data.domain.Pageable;
++import java.time.LocalDateTime;
++import java.util.List;
+ 
+ /**
+- * Person repository for basic operations on Person entity.
++ * Person repository for basic operations on Member entity.
+  * @author crossover
+  */
+-@RestResource(exported=false)
+-public interface MemberRepository extends PagingAndSortingRepository<Member, Long> {
+-  Optional<Member> findById(Long id);
+-  List<Member> findAll();
++@RestResource(exported = false)
++public interface MemberRepository extends CrudRepository<Member, Long> {
++
++    @Query("SELECT " +
++            "    new com.crossover.techtrial.dto.TopMemberDTO(t.member.id, t.member.name, t.member.email, COUNT(t.member.id)) " +
++            "FROM " +
++            "    Transaction t " +
++            "WHERE " +
++            "    t.dateOfIssue BETWEEN ?1 AND ?2 AND " +
++            "    t.dateOfReturn BETWEEN ?1 AND ?2 " +
++            "GROUP BY " +
++            "    t.member.id, t.member.name, t.member.email " +
++            "ORDER BY " +
++            "    COUNT(t.member.id) DESC")
++    List<TopMemberDTO> findTop5MemberList(LocalDateTime startTime, LocalDateTime endTime, Pageable pageable);
++
+ }
+diff --git a/src/main/java/com/crossover/techtrial/repositories/TransactionRepository.java b/src/main/java/com/crossover/techtrial/repositories/TransactionRepository.java
+index cba1dbe..89dc99f 100644
+--- a/src/main/java/com/crossover/techtrial/repositories/TransactionRepository.java
++++ b/src/main/java/com/crossover/techtrial/repositories/TransactionRepository.java
+@@ -1,5 +1,5 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.repositories;
+ 
+@@ -7,6 +7,9 @@ import com.crossover.techtrial.model.Transaction;
+ import org.springframework.data.repository.CrudRepository;
+ import org.springframework.data.rest.core.annotation.RestResource;
+ 
++import java.time.LocalDateTime;
++import java.util.Optional;
++
+ /**
+  * @author crossover
+  *
+@@ -14,4 +17,10 @@ import org.springframework.data.rest.core.annotation.RestResource;
+ @RestResource(exported = false)
+ public interface TransactionRepository extends CrudRepository<Transaction, Long> {
+ 
++    Optional<Transaction> getByBookIdAndDateOfReturnIsNull(Long bookId);
++
++    Optional<Transaction> getByIdAndDateOfReturnNotNull(Long transactionId);
++
++    long countByMemberIdAndDateOfReturnIsNull(Long memberId);
++
+ }
+diff --git a/src/main/java/com/crossover/techtrial/service/BookService.java b/src/main/java/com/crossover/techtrial/service/BookService.java
+index 00dbba7..7b9afa7 100644
+--- a/src/main/java/com/crossover/techtrial/service/BookService.java
++++ b/src/main/java/com/crossover/techtrial/service/BookService.java
+@@ -1,9 +1,10 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.service;
+ 
+ import java.util.List;
++
+ import com.crossover.techtrial.model.Book;
+ 
+ /**
+@@ -12,11 +13,7 @@ import com.crossover.techtrial.model.Book;
+  *
+  */
+ public interface BookService {
+-  
+-  public List<Book> getAll();
+-  
+-  public Book save(Book p);
+-  
+-  public Book findById(Long bookId);
+-  
++
++    public List<Book> getAll();
++
+ }
+diff --git a/src/main/java/com/crossover/techtrial/service/BookServiceImpl.java b/src/main/java/com/crossover/techtrial/service/BookServiceImpl.java
+index a8422db..e1833c1 100644
+--- a/src/main/java/com/crossover/techtrial/service/BookServiceImpl.java
++++ b/src/main/java/com/crossover/techtrial/service/BookServiceImpl.java
+@@ -1,11 +1,12 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.service;
+ 
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Optional;
++
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
+ import com.crossover.techtrial.model.Book;
+@@ -17,30 +18,16 @@ import com.crossover.techtrial.repositories.TransactionRepository;
+  *
+  */
+ @Service
+-public class BookServiceImpl implements BookService{
++public class BookServiceImpl implements BookService {
+ 
+-  @Autowired
+-  BookRepository bookRepository;
+-  
+-  @Autowired
+-  TransactionRepository transactionRepository;
+-  
+-  @Override
+-  public List<Book> getAll() {
+-    List<Book> personList = new ArrayList<>();
+-    bookRepository.findAll().forEach(personList::add);
+-    return personList;
+-    
+-  }
+-  
+-  public Book save(Book p) {
+-    return bookRepository.save(p);
+-  }
++    @Autowired
++    BookRepository bookRepository;
+ 
+-  @Override
+-  public Book findById(Long bookId) {
+-    Optional<Book> dbPerson = bookRepository.findById(bookId);
+-    return dbPerson.orElse(null);
+-  }
++    @Override
++    public List<Book> getAll() {
++        List<Book> bookList = new ArrayList<>();
++        bookRepository.findAll().forEach(bookList::add);
++        return bookList;
++    }
+ 
+ }
+diff --git a/src/main/java/com/crossover/techtrial/service/MemberService.java b/src/main/java/com/crossover/techtrial/service/MemberService.java
+index a4fe6ce..78501be 100644
+--- a/src/main/java/com/crossover/techtrial/service/MemberService.java
++++ b/src/main/java/com/crossover/techtrial/service/MemberService.java
+@@ -1,9 +1,10 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.service;
+ 
+ import java.util.List;
++
+ import com.crossover.techtrial.model.Member;
+ 
+ /**
+@@ -12,11 +13,7 @@ import com.crossover.techtrial.model.Member;
+  *
+  */
+ public interface MemberService {
+-  
+-  public Member save(Member member);
+-  
+-  public Member findById(Long memberId);
+-  
+-  public List<Member> findAll();
+-  
++
++    public List<Member> findAll();
++
+ }
+diff --git a/src/main/java/com/crossover/techtrial/service/MemberServiceImpl.java b/src/main/java/com/crossover/techtrial/service/MemberServiceImpl.java
+index 5fbf1a1..b850bb8 100644
+--- a/src/main/java/com/crossover/techtrial/service/MemberServiceImpl.java
++++ b/src/main/java/com/crossover/techtrial/service/MemberServiceImpl.java
+@@ -1,10 +1,13 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.service;
+ 
++import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Optional;
++
++import com.crossover.techtrial.model.Book;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
+ import com.crossover.techtrial.model.Member;
+@@ -15,24 +18,15 @@ import com.crossover.techtrial.repositories.MemberRepository;
+  *
+  */
+ @Service
+-public class MemberServiceImpl implements MemberService{
++public class MemberServiceImpl implements MemberService {
++
++    @Autowired
++    MemberRepository memberRepository;
+ 
+-  @Autowired
+-  MemberRepository memberRepository;
+-  
+-  public Member save(Member member) {
+-    return memberRepository.save(member);
+-  }
+-  
+-  public Member findById(Long memberId) {
+-    Optional<Member> optionalMember = memberRepository.findById(memberId);
+-    if (optionalMember.isPresent()) {
+-      return optionalMember.get();
+-    }else return null;
+-  }
+-  
+-  public List<Member> findAll() {
+-    return memberRepository.findAll();
+-  }
++    public List<Member> findAll() {
++        List<Member> memberList = new ArrayList<>();
++        memberRepository.findAll().forEach(memberList::add);
++        return memberList;
++    }
+ 
+ }
+diff --git a/src/main/main.iml b/src/main/main.iml
+new file mode 100644
+index 0000000..908ad4f
+--- /dev/null
++++ b/src/main/main.iml
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/java" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+diff --git a/src/main/resources/db/changelog/db.changelog-1.0.xml b/src/main/resources/db/changelog/db.changelog-1.0.xml
+index e4e52fe..48e606d 100644
+--- a/src/main/resources/db/changelog/db.changelog-1.0.xml
++++ b/src/main/resources/db/changelog/db.changelog-1.0.xml
+@@ -32,7 +32,7 @@
+             onUpdate="RESTRICT"
+             referencedColumnNames="id"
+             referencedTableName="book"/>
+-          <addForeignKeyConstraint baseColumnNames="member_id"
++        <addForeignKeyConstraint baseColumnNames="member_id"
+             baseTableName="transaction"
+             constraintName="fk_transaction_member"
+             onDelete="CASCADE"
+diff --git a/src/main/resources/db/changelog/db.changelog-2.0.xml b/src/main/resources/db/changelog/db.changelog-2.0.xml
+new file mode 100644
+index 0000000..de6bf61
+--- /dev/null
++++ b/src/main/resources/db/changelog/db.changelog-2.0.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.1" encoding="UTF-8" standalone="no"?>
++<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
++    <changeSet author="fdelgado" id="1001122002_alter_tables">
++        <addUniqueConstraint columnNames="email"
++                             constraintName="uq_email"
++                             tableName="member"/>
++    </changeSet>
++</databaseChangeLog>
+diff --git a/src/main/resources/db/changelog/db.changelog-master.xml b/src/main/resources/db/changelog/db.changelog-master.xml
+index ea61ac5..6a5bd6e 100644
+--- a/src/main/resources/db/changelog/db.changelog-master.xml
++++ b/src/main/resources/db/changelog/db.changelog-master.xml
+@@ -2,5 +2,5 @@
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+-  <include file="db/changelog/db.changelog-1.0.xml"/>
++  <include file="db/changelog/db.changelog-2.0.xml"/>
+ </databaseChangeLog>
+\ No newline at end of file
+diff --git a/src/test/java/com/crossover/techtrial/controller/BookControllerTest.java b/src/test/java/com/crossover/techtrial/controller/BookControllerTest.java
+new file mode 100644
+index 0000000..fc2484e
+--- /dev/null
++++ b/src/test/java/com/crossover/techtrial/controller/BookControllerTest.java
+@@ -0,0 +1,105 @@
++package com.crossover.techtrial.controller;
++
++import com.crossover.techtrial.model.Book;
++import com.crossover.techtrial.repositories.BookRepository;
++import org.junit.Assert;
++import org.junit.Before;
++import org.junit.Test;
++import org.junit.runner.RunWith;
++import org.mockito.Mock;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.boot.test.context.SpringBootTest;
++import org.springframework.boot.test.web.client.TestRestTemplate;
++import org.springframework.http.HttpEntity;
++import org.springframework.http.HttpHeaders;
++import org.springframework.http.MediaType;
++import org.springframework.http.ResponseEntity;
++import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
++import org.springframework.test.web.servlet.MockMvc;
++import org.springframework.test.web.servlet.setup.MockMvcBuilders;
++
++@RunWith(SpringJUnit4ClassRunner.class)
++@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
++public class BookControllerTest {
++
++    MockMvc mockMvc;
++
++    @Mock
++    private BookController bookController;
++
++    @Autowired
++    private TestRestTemplate template;
++
++    @Autowired
++    BookRepository bookRepository;
++
++    @Before
++    public void setup() throws Exception {
++        mockMvc = MockMvcBuilders.standaloneSetup(bookController).build();
++    }
++
++    @Test
++    public void testBookRegistrationSuccessful() throws Exception {
++        HttpEntity<Object> book = getHttpEntity(
++                "{\"title\": \"Book X\" }");
++
++        ResponseEntity<Book> response = template.postForEntity(
++                "/api/book", book, Book.class);
++
++        Assert.assertEquals("Book X", response.getBody().getTitle());
++        Assert.assertEquals(200, response.getStatusCode().value());
++
++        //cleanup the book
++        bookRepository.deleteById(response.getBody().getId());
++    }
++
++    @Test
++    public void getBookByIdSuccessfully() throws Exception {
++
++        HttpEntity<Object> book = getHttpEntity(
++                "{\"title\": \"Book X\" }");
++
++        ResponseEntity<Book> response = template.postForEntity(
++                "/api/book", book, Book.class);
++
++        Assert.assertEquals("Book X", response.getBody().getTitle());
++        Assert.assertEquals(200, response.getStatusCode().value());
++
++
++        Book m = template.getForObject("/api/book/"+response.getBody().getId(), Book.class);
++
++        Assert.assertEquals("Book X", m.getTitle());
++
++        //cleanup the book
++        bookRepository.deleteById(response.getBody().getId());
++
++    }
++
++    @Test
++    public void getAllBooksSuccessfully() throws Exception {
++
++        HttpEntity<Object> book = getHttpEntity(
++                "{\"title\": \"Book X\" }");
++
++        ResponseEntity<Book> response = template.postForEntity(
++                "/api/book", book, Book.class);
++
++        Assert.assertEquals("Book X", response.getBody().getTitle());
++        Assert.assertEquals(200, response.getStatusCode().value());
++
++        ResponseEntity<Book[]> responseEntity = template.getForEntity("/api/book", Book[].class);
++
++        Assert.assertTrue((responseEntity.getBody().length > 0));
++
++        //cleanup the book
++        bookRepository.deleteById(response.getBody().getId());
++
++    }
++
++    private HttpEntity<Object> getHttpEntity(Object body) {
++        HttpHeaders headers = new HttpHeaders();
++        headers.setContentType(MediaType.APPLICATION_JSON);
++        return new HttpEntity<Object>(body, headers);
++    }
++
++}
+diff --git a/src/test/java/com/crossover/techtrial/controller/MemberControllerTest.java b/src/test/java/com/crossover/techtrial/controller/MemberControllerTest.java
+index 0368a7e..5577273 100644
+--- a/src/test/java/com/crossover/techtrial/controller/MemberControllerTest.java
++++ b/src/test/java/com/crossover/techtrial/controller/MemberControllerTest.java
+@@ -1,5 +1,5 @@
+ /**
+- * 
++ *
+  */
+ package com.crossover.techtrial.controller;
+ 
+@@ -12,16 +12,24 @@ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.boot.test.context.SpringBootTest;
+ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+ import org.springframework.boot.test.web.client.TestRestTemplate;
+-import org.springframework.http.HttpEntity;
+-import org.springframework.http.HttpHeaders;
+-import org.springframework.http.MediaType;
+-import org.springframework.http.ResponseEntity;
++import org.springframework.core.ParameterizedTypeReference;
++import org.springframework.http.*;
+ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+ import org.springframework.test.web.servlet.MockMvc;
+ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+ import com.crossover.techtrial.model.Member;
+ import com.crossover.techtrial.repositories.MemberRepository;
+ 
++import static org.hamcrest.Matchers.containsString;
++import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
++import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
++import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
++import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
++
++import java.util.List;
++
++import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
++
+ /**
+  * @author kshah
+  *
+@@ -29,43 +37,149 @@ import com.crossover.techtrial.repositories.MemberRepository;
+ @RunWith(SpringJUnit4ClassRunner.class)
+ @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+ public class MemberControllerTest {
+-  
+-  MockMvc mockMvc;
+-  
+-  @Mock
+-  private MemberController memberController;
+-  
+-  @Autowired
+-  private TestRestTemplate template;
+-  
+-  @Autowired
+-  MemberRepository memberRepository;
+-  
+-  @Before
+-  public void setup() throws Exception {
+-    mockMvc = MockMvcBuilders.standaloneSetup(memberController).build();
+-  }
+-  
+-  @Test
+-  public void testMemberRegsitrationsuccessful() throws Exception {
+-    HttpEntity<Object> member = getHttpEntity(
+-        "{\"name\": \"test 1\", \"email\": \"test10000000000001@gmail.com\"," 
+-            + " \"membershipStatus\": \"ACTIVE\",\"membershipStartDate\":\"2018-08-08T12:12:12\" }");
+-    
+-    ResponseEntity<Member> response = template.postForEntity(
+-        "/api/member", member, Member.class);
+-    
+-    Assert.assertEquals("test 1", response.getBody().getName());
+-    Assert.assertEquals(200,response.getStatusCode().value());
+-    
+-    //cleanup the user
+-    memberRepository.deleteById(response.getBody().getId());
+-  }
+-
+-  private HttpEntity<Object> getHttpEntity(Object body) {
+-    HttpHeaders headers = new HttpHeaders();
+-    headers.setContentType(MediaType.APPLICATION_JSON);
+-    return new HttpEntity<Object>(body, headers);
+-  }
++
++    MockMvc mockMvc;
++
++    @Mock
++    private MemberController memberController;
++
++    @Autowired
++    private TestRestTemplate template;
++
++    @Autowired
++    MemberRepository memberRepository;
++
++    @Before
++    public void setup() throws Exception {
++        mockMvc = MockMvcBuilders.standaloneSetup(memberController).build();
++    }
++
++    @Test
++    public void testMemberRegistrationSuccessful() throws Exception {
++        HttpEntity<Object> member = getHttpEntity(
++                "{\"name\": \"Elon Musk\", \"email\": \"emuskmember@gmail.com\","
++                        + " \"membershipStatus\": \"ACTIVE\",\"membershipStartDate\":\"2018-12-15T12:12:12\" }");
++
++        ResponseEntity<Member> response = template.postForEntity(
++                "/api/member", member, Member.class);
++
++        Assert.assertEquals("Elon Musk", response.getBody().getName());
++        Assert.assertEquals(200, response.getStatusCode().value());
++
++        //cleanup the user
++        memberRepository.deleteById(response.getBody().getId());
++    }
++
++    @Test
++    public void testMemberDuplicatedEmailOnRegistration() throws Exception {
++        HttpEntity<Object> member1 = getHttpEntity(
++                "{\"name\": \"Elon Musk\", \"email\": \"emuskmember@gmail.com\","
++                        + " \"membershipStatus\": \"ACTIVE\",\"membershipStartDate\":\"2018-12-15T12:12:12\" }");
++
++        HttpEntity<Object> member2 = getHttpEntity(
++                "{\"name\": \"Larry Page\", \"email\": \"emuskmember@gmail.com\","
++                        + " \"membershipStatus\": \"ACTIVE\",\"membershipStartDate\":\"2018-12-15T12:12:12\" }");
++
++        ResponseEntity<Member> response1= template.postForEntity(
++                "/api/member", member1, Member.class);
++
++        Assert.assertEquals("Elon Musk", response1.getBody().getName());
++        Assert.assertEquals(200, response1.getStatusCode().value());
++
++        ResponseEntity<Member> response2 = template.postForEntity(
++                "/api/member", member2, Member.class);
++
++        Assert.assertEquals(400, response2.getStatusCode().value());
++
++        //cleanup the user
++        memberRepository.deleteById(response1.getBody().getId());
++    }
++
++    @Test
++    public void testWrongNameStartOnRegistration() throws Exception {
++        HttpEntity<Object> member = getHttpEntity(
++                "{\"name\": \"1Elon Musk\", \"email\": \"emuskmember@gmail.com\","
++                        + " \"membershipStatus\": \"ACTIVE\",\"membershipStartDate\":\"2018-12-15T12:12:12\" }");
++
++        ResponseEntity<Member> response = template.postForEntity(
++                "/api/member", member, Member.class);
++
++        Assert.assertEquals(400, response.getStatusCode().value());
++    }
++
++    @Test
++    public void testTooShortNameOnRegistration() throws Exception {
++        HttpEntity<Object> member = getHttpEntity(
++                "{\"name\": \"a\", \"email\": \"emuskmember@gmail.com\","
++                        + " \"membershipStatus\": \"ACTIVE\",\"membershipStartDate\":\"2018-12-15T12:12:12\" }");
++
++        ResponseEntity<Member> response = template.postForEntity(
++                "/api/member", member, Member.class);
++
++        Assert.assertEquals(400, response.getStatusCode().value());
++    }
++
++    @Test
++    public void testTooLongNameOnRegistration() throws Exception {
++        HttpEntity<Object> member = getHttpEntity(
++                "{\"name\": \"asdasdasd asdas dasda sdas dasdasd asdasdadasdasdasd" +
++                        " asd as dasdadadasdas asdasdasdas asdasdasdasdaax\", \"email\": \"emuskmember@gmail.com\","
++                        + " \"membershipStatus\": \"ACTIVE\",\"membershipStartDate\":\"2018-12-15T12:12:12\" }");
++
++        ResponseEntity<Member> response = template.postForEntity(
++                "/api/member", member, Member.class);
++
++        Assert.assertEquals(400, response.getStatusCode().value());
++    }
++
++    @Test
++    public void getMemberByIdSuccessfully() throws Exception {
++
++        HttpEntity<Object> member = getHttpEntity(
++                "{\"name\": \"Morgan Freeman\", \"email\": \"mfreeman@gmail.com\","
++                        + " \"membershipStatus\": \"ACTIVE\",\"membershipStartDate\":\"2018-12-15T12:12:12\" }");
++
++        ResponseEntity<Member> response = template.postForEntity(
++                "/api/member", member, Member.class);
++
++        Assert.assertEquals("Morgan Freeman", response.getBody().getName());
++        Assert.assertEquals(200, response.getStatusCode().value());
++
++        Member m = template.getForObject("/api/member/"+response.getBody().getId(), Member.class);
++
++        Assert.assertEquals("Morgan Freeman", m.getName());
++
++        //cleanup the user
++        memberRepository.deleteById(response.getBody().getId());
++
++    }
++
++    @Test
++    public void getAllMembersSuccessfully() throws Exception {
++
++        HttpEntity<Object> member = getHttpEntity(
++                "{\"name\": \"Morgan Freeman\", \"email\": \"mfreeman@gmail.com\","
++                        + " \"membershipStatus\": \"ACTIVE\",\"membershipStartDate\":\"2018-12-15T12:12:12\" }");
++
++        ResponseEntity<Member> response = template.postForEntity(
++                "/api/member", member, Member.class);
++
++        Assert.assertEquals("Morgan Freeman", response.getBody().getName());
++        Assert.assertEquals(200, response.getStatusCode().value());
++
++        ResponseEntity<Member[]> responseEntity = template.getForEntity("/api/member", Member[].class);
++
++        Assert.assertTrue((responseEntity.getBody().length > 0));
++
++        //cleanup the user
++        memberRepository.deleteById(response.getBody().getId());
++
++    }
++
++    private HttpEntity<Object> getHttpEntity(Object body) {
++        HttpHeaders headers = new HttpHeaders();
++        headers.setContentType(MediaType.APPLICATION_JSON);
++        return new HttpEntity<Object>(body, headers);
++    }
+ 
+ }
+diff --git a/src/test/java/com/crossover/techtrial/controller/TransactionControllerTest.java b/src/test/java/com/crossover/techtrial/controller/TransactionControllerTest.java
+new file mode 100644
+index 0000000..d5d9d8d
+--- /dev/null
++++ b/src/test/java/com/crossover/techtrial/controller/TransactionControllerTest.java
+@@ -0,0 +1,273 @@
++/**
++ *
++ */
++package com.crossover.techtrial.controller;
++
++import com.crossover.techtrial.model.Book;
++import com.crossover.techtrial.model.Transaction;
++import com.crossover.techtrial.repositories.BookRepository;
++import com.crossover.techtrial.repositories.MemberRepository;
++import org.junit.After;
++import org.junit.Assert;
++import org.junit.Before;
++import org.junit.Test;
++import org.junit.runner.RunWith;
++import org.mockito.Mock;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.boot.test.context.SpringBootTest;
++import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
++import org.springframework.boot.test.web.client.TestRestTemplate;
++import org.springframework.http.*;
++import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
++import org.springframework.test.web.servlet.MockMvc;
++import org.springframework.test.web.servlet.setup.MockMvcBuilders;
++import com.crossover.techtrial.model.Member;
++import com.crossover.techtrial.repositories.TransactionRepository;
++
++import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
++import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
++import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
++
++/**
++ * @author kshah
++ *
++ */
++@RunWith(SpringJUnit4ClassRunner.class)
++@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
++public class TransactionControllerTest {
++
++    MockMvc mockMvc;
++
++    @Mock
++    private TransactionController transactionController;
++
++    @Autowired
++    private TestRestTemplate template;
++
++    @Autowired
++    TransactionRepository transactionRepository;
++
++    @Autowired
++    BookRepository bookRepository;
++
++    @Autowired
++    MemberRepository memberRepository;
++
++    Book book;
++    Member member;
++
++    @Before
++    public void setup() throws Exception {
++        mockMvc = MockMvcBuilders.standaloneSetup(transactionController).build();
++        HttpEntity<Object> httpBook = getHttpEntity(
++                "{\"title\": \"Book X\" }");
++        book = template.postForEntity(
++                "/api/book", httpBook, Book.class).getBody();
++
++        HttpEntity<Object> httpMember = getHttpEntity(
++                "{\"name\": \"Larry Ellison\", \"email\": \"lellison@gmail.com\","
++                        + " \"membershipStatus\": \"ACTIVE\",\"membershipStartDate\":\"2018-12-15T12:12:12\" }");
++
++        member = template.postForEntity(
++                "/api/member", httpMember, Member.class).getBody();
++    }
++
++    @Test
++    public void testIssueBookToMemberSuccessful() throws Exception {
++
++        HttpEntity<Object> transaction = getHttpEntity(
++                "{\"bookId\": " + book.getId() + ", \"memberId\": " + member.getId() + " }");
++
++        ResponseEntity<Transaction> response = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(book.getTitle(), response.getBody().getBook().getTitle());
++        Assert.assertEquals(member.getName(), response.getBody().getMember().getName());
++        Assert.assertEquals(200, response.getStatusCode().value());
++
++        //cleanup the transaction
++        transactionRepository.deleteById(response.getBody().getId());
++    }
++
++    @Test
++    public void testNotExistingBookOnTransactionRegistration() throws Exception {
++        HttpEntity<Object> transaction = getHttpEntity(
++                "{\"bookId\": 1010101010101, \"memberId\": " + member.getId() + " }");
++        ResponseEntity<Transaction> response = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(404, response.getStatusCode().value());
++    }
++
++    @Test
++    public void testBookAlreadyBookedOnTransactionRegistration() throws Exception {
++        HttpEntity<Object> transaction = getHttpEntity(
++                "{\"bookId\": " + book.getId() + ", \"memberId\": " + member.getId() + " }");
++
++        ResponseEntity<Transaction> response1 = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(book.getTitle(), response1.getBody().getBook().getTitle());
++        Assert.assertEquals(member.getName(), response1.getBody().getMember().getName());
++        Assert.assertEquals(200, response1.getStatusCode().value());
++
++        ResponseEntity<Transaction> response2 = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(403, response2.getStatusCode().value());
++
++        //cleanup the transaction
++        transactionRepository.deleteById(response1.getBody().getId());
++    }
++
++    @Test
++    public void testBookedBooksLimitReachedByUserOnTransactionRegistration() throws Exception {
++        Book book1 = template.postForEntity(
++                "/api/book", getHttpEntity(
++                        "{\"title\": \"Book Limit Test 1\" }"), Book.class).getBody();
++
++        HttpEntity<Object> transaction = getHttpEntity(
++                "{\"bookId\": " + book1.getId() + ", \"memberId\": " + member.getId() + " }");
++        ResponseEntity<Transaction> response1 = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(book1.getTitle(), response1.getBody().getBook().getTitle());
++        Assert.assertEquals(member.getName(), response1.getBody().getMember().getName());
++        Assert.assertEquals(200, response1.getStatusCode().value());
++
++        Book book2 = template.postForEntity(
++                "/api/book", getHttpEntity(
++                        "{\"title\": \"Book Limit Test 2\" }"), Book.class).getBody();
++
++        transaction = getHttpEntity(
++                "{\"bookId\": " + book2.getId() + ", \"memberId\": " + member.getId() + " }");
++        ResponseEntity<Transaction> response2 = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(book2.getTitle(), response2.getBody().getBook().getTitle());
++        Assert.assertEquals(member.getName(), response2.getBody().getMember().getName());
++        Assert.assertEquals(200, response2.getStatusCode().value());
++
++        Book book3 = template.postForEntity(
++                "/api/book", getHttpEntity(
++                        "{\"title\": \"Book Limit Test 3\" }"), Book.class).getBody();
++
++        transaction = getHttpEntity(
++                "{\"bookId\": " + book3.getId() + ", \"memberId\": " + member.getId() + " }");
++        ResponseEntity<Transaction> response3 = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(book3.getTitle(), response3.getBody().getBook().getTitle());
++        Assert.assertEquals(member.getName(), response3.getBody().getMember().getName());
++        Assert.assertEquals(200, response3.getStatusCode().value());
++
++        Book book4 = template.postForEntity(
++                "/api/book", getHttpEntity(
++                        "{\"title\": \"Book Limit Test 4\" }"), Book.class).getBody();
++
++        transaction = getHttpEntity(
++                "{\"bookId\": " + book4.getId() + ", \"memberId\": " + member.getId() + " }");
++        ResponseEntity<Transaction> response4 = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(book4.getTitle(), response4.getBody().getBook().getTitle());
++        Assert.assertEquals(member.getName(), response4.getBody().getMember().getName());
++        Assert.assertEquals(200, response4.getStatusCode().value());
++
++        Book book5 = template.postForEntity(
++                "/api/book", getHttpEntity(
++                        "{\"title\": \"Book Limit Test 5\" }"), Book.class).getBody();
++
++        transaction = getHttpEntity(
++                "{\"bookId\": " + book5.getId() + ", \"memberId\": " + member.getId() + " }");
++        ResponseEntity<Transaction> response5 = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(book5.getTitle(), response5.getBody().getBook().getTitle());
++        Assert.assertEquals(member.getName(), response5.getBody().getMember().getName());
++        Assert.assertEquals(200, response5.getStatusCode().value());
++
++        Book book6 = template.postForEntity(
++                "/api/book", getHttpEntity(
++                        "{\"title\": \"Book Limit Test 6\" }"), Book.class).getBody();
++
++        transaction = getHttpEntity(
++                "{\"bookId\": " + book6.getId() + ", \"memberId\": " + member.getId() + " }");
++        ResponseEntity<Transaction> response6 = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(403, response6.getStatusCode().value());
++
++        //cleanup the transaction
++        transactionRepository.deleteById(response1.getBody().getId());
++        //cleanup the transaction
++        transactionRepository.deleteById(response2.getBody().getId());
++        //cleanup the transaction
++        transactionRepository.deleteById(response3.getBody().getId());
++        //cleanup the transaction
++        transactionRepository.deleteById(response4.getBody().getId());
++        //cleanup the transaction
++        transactionRepository.deleteById(response5.getBody().getId());
++
++    }
++
++    @Test
++    public void testMembershipProblemOnRegistration () {
++        HttpEntity<Object> httpMember = getHttpEntity(
++                "{\"name\": \"Larry Inactive Ellison\", \"email\": \"lellisoninactive@gmail.com\","
++                        + " \"membershipStatus\": \"INACTIVE\",\"membershipStartDate\":\"2018-12-15T12:12:12\" }");
++
++        Member memberInactive = template.postForEntity(
++                "/api/member", httpMember, Member.class).getBody();
++
++        HttpEntity<Object> transaction = getHttpEntity(
++                "{\"bookId\": " + book.getId() + ", \"memberId\": " + memberInactive.getId() + " }");
++
++        ResponseEntity<Transaction> response = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(403, response.getStatusCode().value());
++
++        //cleanup the user
++        memberRepository.deleteById(memberInactive.getId());
++    }
++
++    @Test
++    public void registerBookReturnSuccessfully () throws Exception {
++
++        HttpEntity<Object> transaction = getHttpEntity(
++                "{\"bookId\": " + book.getId() + ", \"memberId\": " + member.getId() + " }");
++
++        ResponseEntity<Transaction> response = template.postForEntity(
++                "/api/transaction", transaction, Transaction.class);
++
++        Assert.assertEquals(book.getTitle(), response.getBody().getBook().getTitle());
++        Assert.assertEquals(member.getName(), response.getBody().getMember().getName());
++        Assert.assertNotEquals(null, response.getBody().getDateOfIssue());
++        Assert.assertEquals(200, response.getStatusCode().value());
++
++        String uri = "/api/transaction/" + response.getBody().getId() + "/return";
++
++        mockMvc.perform(patch(uri)
++                .accept(MediaType.APPLICATION_JSON))
++                .andExpect(status().isOk());
++
++        //cleanup the transaction
++        transactionRepository.deleteById(response.getBody().getId());
++    }
++
++    private HttpEntity<Object> getHttpEntity(Object body) {
++        HttpHeaders headers = new HttpHeaders();
++        headers.setContentType(MediaType.APPLICATION_JSON);
++        return new HttpEntity<Object>(body, headers);
++    }
++
++    @After
++    public void beforeEnd () {
++        //cleanup the book
++        bookRepository.deleteById(book.getId());
++        //cleanup the user
++        memberRepository.deleteById(member.getId());
++    }
++
++}
+diff --git a/src/test/test.iml b/src/test/test.iml
+new file mode 100644
+index 0000000..5ebc6f4
+--- /dev/null
++++ b/src/test/test.iml
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/java" isTestSource="true" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="module" module-name="main" />
++  </component>
++</module>
+\ No newline at end of file
+-- 
+2.17.2 (Apple Git-113)
+
